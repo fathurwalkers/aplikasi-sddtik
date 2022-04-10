@@ -13,11 +13,13 @@ class CreateDetailsTable extends Migration
 
             $table->string('detail_nama')->nullable();
             $table->dateTime('detail_ttl')->nullable();
-            $table->string('detail_usia')->nullable();
             $table->string('detail_jeniskelamin')->nullable();
             $table->string('detail_nama_ayah')->nullable();
             $table->string('detail_nama_ibu')->nullable();
             $table->string('detail_alamat')->nullable();
+            $table->string('detail_riwayat_persalinan')->nullable();
+            $table->integer('detail_berat_badan_lahir')->nullable();
+            $table->integer('detail_tinggi_badan_lahir')->nullable();
             $table->string('detail_type')->nullable();
 
             // $table->string('detail_no_kk')->nullable();

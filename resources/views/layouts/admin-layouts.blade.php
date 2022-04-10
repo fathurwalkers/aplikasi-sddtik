@@ -34,7 +34,7 @@
 
 </head>
 <body>
-  <div class="container-scroller"> 
+  <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      {{-- <div class="navbar-menu-wrapper d-flex align-items-top"> 
+      {{-- <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             <h1 class="welcome-text"> <span class="text-black fw-bold" style="color: rgb(46, 178, 26);">APLIKASI SDIDTK</span></h1>
@@ -65,7 +65,7 @@
         </button>
       </div> --}}
 
-      <div class="navbar-menu-wrapper d-flex align-items-top"> 
+      <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             <h1 class="welcome-text"> <span class="text-black fw-bold" style="color: rgb(46, 178, 26);">APLIKASI SDIDTK</span></h1>
@@ -73,14 +73,14 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          
+
           {{-- <li class="nav-item">
             <form class="search-form" action="#">
               <i class="icon-search"></i>
               <input type="search" class="form-control" placeholder="Search Here" title="Search here">
             </form>
           </li> --}}
-          
+
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
             <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
               <img class="img-xs rounded-circle" src="{{ asset('assets/base/template') }}/images/faces/face8.jpg" alt="Profile image"> </a>
@@ -126,7 +126,15 @@
               <span class="menu-title">Profil Pengguna</span>
             </a>
           </li>
-      
+
+          <li class="nav-item nav-category">Pemeriksaan</li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('hasil-pemeriksaan') }}">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Hasil Pemeriksaan</span>
+            </a>
+          </li>
+
           <li class="nav-item nav-category">JENIS PELAYANAN</li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('deteksi-penyimpangan-pertumbuhan') }}">
@@ -146,9 +154,9 @@
               <span class="menu-title">Deteksi Dini <br> Penyimpangan<br> Mental Emosional</span>
             </a>
           </li>
-  
 
-          {{-- 
+
+          {{--
           <li class="nav-item nav-category">TES & DETEKSI</li>
           <li class="nav-item">
             <a class="nav-link" href="TDL.html">
@@ -225,7 +233,7 @@
                     <div class="home-tab">
                         <div class="d-sm-flex align-items-center justify-content-between border-bottom"></div>
                         <div class="tab-content tab-content-basic">
-                            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview"> 
+                            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
 
                                 {{-- <div class="container"> --}}
 
@@ -238,34 +246,34 @@
                                           @endif
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row">
                                         <div class="col-md-12 col-xl-12 grid-margin stretch-card d-none d-md-flex">
                                             <div class="card">
 
                                                   <div class="card-body">
                                                       <div class="row">
-            
+
                                                           <div class="col-sm-8 col-md-8 col-lg-8">
                                                               <h2 class="card-title"><b> &nbsp; @yield('main-header')</b></h2>
                                                           </div>
-            
+
                                                           <div class="col-sm-4 col-md-4 col-lg-4 float-right d-flex justify-content-end">
                                                               <form action="{{ route('dashboard') }}" method="GET">
                                                                 @csrf
                                                                   <button type="submit" class="btn btn-md btn-danger">
                                                                     <b>Kembali</b>
-                                                                  </button> 
+                                                                  </button>
                                                                   &nbsp;
                                                               </form>
                                                           </div>
-                                                        
+
                                                       </div>
-                                                  
+
                                                       @yield('main-content')
-                                  
+
                                                   </div>
-                              
+
                                             </div>
                                         </div>
                                     </div>

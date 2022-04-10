@@ -13,6 +13,15 @@ use App\Models\Login;
 
 class PelayananController extends Controller
 {
+    public function hasil_pemeriksaan()
+    {
+        $session_users  = session('data_login');
+        $users          = Login::find($session_users->id);
+        return view('admin.hasil-pemeriksaan', [
+            'users' => $users
+        ]);
+    }
+
     // DETEKSI PENYIMPANGAN PERTUMBUHAN ======================================================
     public function deteksi_penyimpangan_pertumbuhan()
     {
