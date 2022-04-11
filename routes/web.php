@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BackController;
+use App\Http\Controllers\GenerateController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelayananController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     Route::get('/pelayanan/kmpe', [PelayananController::class, 'kmpe'])->name('kmpe');
     Route::get('/pelayanan/mchat', [PelayananController::class, 'mchat'])->name('mchat');
     Route::get('/pelayanan/gpph', [PelayananController::class, 'gpph'])->name('gpph');
-
     // ==================================== END Pelayanan Route ====================================
+
+    Route::get('/generate-data', [GenerateController::class, 'generate_data'])->name('generate-data');
 });

@@ -12,6 +12,7 @@ class CreateDetailsTable extends Migration
             $table->id();
 
             $table->string('detail_nama')->nullable();
+            $table->string('detail_nik')->nullable();
             $table->dateTime('detail_ttl')->nullable();
             $table->string('detail_jeniskelamin')->nullable();
             $table->string('detail_nama_ayah')->nullable();
@@ -20,19 +21,9 @@ class CreateDetailsTable extends Migration
             $table->string('detail_riwayat_persalinan')->nullable();
             $table->integer('detail_berat_badan_lahir')->nullable();
             $table->integer('detail_tinggi_badan_lahir')->nullable();
-            $table->string('detail_type')->nullable();
 
-            // $table->string('detail_no_kk')->nullable();
-            // $table->string('detail_provinsi')->nullable();
-            // $table->string('detail_kota')->nullable();
-            // $table->string('detail_kecamatan')->nullable();
-            // $table->string('detail_puskesmas')->nullable();
-            // $table->string('detail_desa')->nullable();
-            // $table->string('detail_posyandu')->nullable();
-            // $table->string('detail_nohp_ortu')->nullable();
-
-            $table->unsignedBigInteger('login_id')->nullable()->default(null);
-            $table->foreign('login_id')->references('id')->on('login')->onDelete('cascade');
+            // $table->unsignedBigInteger('login_id')->nullable()->default(null);
+            // $table->foreign('login_id')->references('id')->on('login')->onDelete('cascade');
 
             $table->timestamps();
         });
