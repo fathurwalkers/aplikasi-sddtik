@@ -18,7 +18,7 @@ class GenerateController extends Controller
     {
         $faker                  = Faker::create('id_ID');
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 5; $i++) {
             $arr_jenis_kelamin  = ["L", "P"];
             $arr_riwayat_persalinan  = ["PREMATUR", "ATERM"];
 

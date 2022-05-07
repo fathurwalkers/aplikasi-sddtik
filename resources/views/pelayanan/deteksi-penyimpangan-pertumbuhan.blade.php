@@ -16,7 +16,7 @@
       <div class="card-body">
         <h5 class="card-title"><b>BB/TB</b></h5>
         <p class="card-text">Berat Badan Terhadap Tinggi Badan</p>
-        <a href="{{ route('bbtb') }}" class="btn btn-info"><b>Detail Lengkap ></b></a>
+        <a href="{{ route('bbtb') }}" class="btn btn-info"><b>Mulai Tes ></b></a>
       </div>
     </div>
   </div>
@@ -26,11 +26,11 @@
       <div class="card-body">
         <h5 class="card-title"><b>LK</b></h5>
         <p class="card-text mb-2">Lingkar Kepala</p>
-        <a href="{{ route('lk') }}" class="btn btn-info mt-3"><b>Detail Lengkap ></b></a>
+        <a href="{{ route('lk') }}" class="btn btn-info mt-3"><b>Mulai Tes ></b></a>
       </div>
     </div>
   </div>
-  
+
 </div>
 
 @endsection
