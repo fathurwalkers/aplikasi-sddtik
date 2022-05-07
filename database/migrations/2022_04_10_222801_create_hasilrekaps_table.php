@@ -20,6 +20,13 @@ class CreateHasilrekapsTable extends Migration
             $table->string('kmpe')->nullable();
             $table->string('mchat')->nullable();
             $table->string('gpph')->nullable();
+            $table->text('keterangan_bbtb')->nullable();
+            $table->text('keterangan_lk')->nullable();
+            $table->text('keterangan_kpsp')->nullable();
+            $table->text('keterangan_tdd')->nullable();
+            $table->text('keterangan_tdl')->nullable();
+            $table->text('keterangan_mchat')->nullable();
+            $table->text('keterangan_gpph')->nullable();
 
             $table->unsignedBigInteger('data_id')->nullable()->default(null);
             $table->foreign('data_id')->references('id')->on('detail')->onDelete('cascade');
