@@ -86,6 +86,10 @@ class PelayananController extends Controller
     public function tdd()
     {
         $session_users  = session('data_login');
+        $session_peserta  = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('pilih-peserta')->with('status', 'Tidak ada peserta yang dipilih, harap melakukan pemilihan peserta pelayanan terlebih dahulu.');
+        }
         $users          = Login::find($session_users->id);
         return view('pelayanan.tdd', [
             'users' => $users

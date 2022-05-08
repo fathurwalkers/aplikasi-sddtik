@@ -92,13 +92,13 @@
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img class="img-xs rounded-circle"
-                                src="{{ asset('assets/base/template') }}/images/faces/face8.jpg" alt="Profile image">
+                                src="{{ asset('foto') }}/default-profile.jpg" alt="Profile image" width="40px">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
                                 <img class="img-md rounded-circle"
-                                    src="{{ asset('assets/base/template') }}/images/faces/face8.jpg"
-                                    alt="Profile image">
+                                    src="{{ asset('foto') }}/default-profile.jpg"
+                                    alt="Profile image" width="40px">
                                 <p class="mb-1 mt-3 font-weight-semibold">{{ $users->login_nama }}</p>
                                 <p class="fw-light text-muted mb-0">{{ $users->login_email }}</p>
                             </div>
