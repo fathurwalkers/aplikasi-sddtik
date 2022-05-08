@@ -62,8 +62,8 @@
                         <label for="exampleSelectGender">Pilih Jawaban : </label>
                         <select class="form-control" id="exampleSelectGender" name="jawaban_tdl">
                             <option selected value="">Pilih jawaban...</option>
-                            <option selected value="YA">YA</option>
-                            <option selected value="TIDAK">TIDAK</option>
+                            <option value="YA">YA</option>
+                            <option value="TIDAK">TIDAK</option>
                         </select>
                     </div>
                 </div>
