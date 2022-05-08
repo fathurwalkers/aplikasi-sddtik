@@ -107,6 +107,12 @@ class PelayananController extends Controller
             'users' => $users
         ]);
     }
+
+    public function post_tdl(Request $request)
+    {
+        $jawaban_tdl = $request->jawaban_tdl;
+        dd($jawaban_tdl);
+    }
     // END DETEKSI PENYIMPANGAN PERKEMBANGAN ========================================================
 
     // DETEKSI PENYIMPANGAN MENTAL EMOSIONAL ========================================================

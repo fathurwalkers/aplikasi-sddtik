@@ -37,7 +37,9 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     Route::get('/pelayanan/deteksi-dini-penyimpangan-perkembangan', [PelayananController::class, 'deteksi_penyimpangan_perkembangan'])->name('deteksi-penyimpangan-perkembangan');
     Route::get('/pelayanan/kpsp', [PelayananController::class, 'kpsp'])->name('kpsp');
     Route::get('/pelayanan/tdd', [PelayananController::class, 'tdd'])->name('tdd');
+
     Route::get('/pelayanan/tdl', [PelayananController::class, 'tdl'])->name('tdl');
+    Route::post('/pelayanan/post-tdl', [PelayananController::class, 'post_tdl'])->name('post-tdl');
 
 
     // Deteksi Penyimpangan Mental Emosional Route
