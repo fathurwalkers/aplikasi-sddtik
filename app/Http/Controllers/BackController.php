@@ -27,6 +27,11 @@ class BackController extends Controller
         }
     }
 
+    public function data_peserta()
+    {
+        $data = Detail::all();
+    }
+
     public function hitung_bulan($id)
     {
         $testdata = Detail::find($id);
