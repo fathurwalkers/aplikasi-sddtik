@@ -13,6 +13,18 @@ use App\Models\Login;
 
 class PelayananController extends Controller
 {
+    public function hitung_bulan($id)
+    {
+        $testdata = Detail::find($id);
+        $date1 = strtotime($testdata->detail_ttl);
+        $date2 = strtotime(now());
+        $totalbulan = 0;
+        while (($date1 = strtotime('+1 MONTH', $date1)) <= $date2) {
+            $totalbulan++;
+        }
+        return $totalbulan;
+    }
+
     public function hasil_pemeriksaan()
     {
         $session_users  = session('data_login');
@@ -82,6 +94,14 @@ class PelayananController extends Controller
     public function tdl()
     {
         $session_users  = session('data_login');
+        $session_peserta  = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('pilih-peserta')->with('status', 'Tidak ada peserta yang dipilih, harap melakukan pemilihan peserta pelayanan terlebih dahulu.');
+        }
+        $cek_bulan = $this->hitung_bulan($session_peserta->id);
+        if ($cek_bulan <= 36) {
+            return redirect()->route('dashboard')->with('status', 'Minimal usian (bulan) harus lebih dari 36 Bulan untuk melakukan pemeriksaan TDL.');
+        }
         $users          = Login::find($session_users->id);
         return view('pelayanan.tdl', [
             'users' => $users

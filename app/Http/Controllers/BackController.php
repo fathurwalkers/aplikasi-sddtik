@@ -27,6 +27,19 @@ class BackController extends Controller
         }
     }
 
+    public function hitung_bulan($id)
+    {
+        $testdata = Detail::find($id);
+        $date1 = strtotime($testdata->detail_ttl);
+        $date2 = strtotime(now());
+        $totalbulan = 0;
+
+        while (($date1 = strtotime('+1 MONTH', $date1)) <= $date2) {
+            $totalbulan++;
+        }
+        return $totalbulan;
+    }
+
     public function pilih_peserta()
     {
         $session_peserta = session('peserta');

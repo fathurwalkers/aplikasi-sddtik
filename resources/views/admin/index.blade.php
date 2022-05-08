@@ -37,8 +37,8 @@
 
 @section('status-pelayanan')
 @if ($data == null)
-<button type="disabled" class="btn btn-md btn-info disabled">
-    <b>Status Pelayanan : NONAKTIF</b>
+<button type="button" class="btn btn-md btn-info" onclick="location.href = '{{ route('pilih-peserta') }}';">
+    <b>Pilih Peserta</b>
 </button>
 &nbsp;
 @else
