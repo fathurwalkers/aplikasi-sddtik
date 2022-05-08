@@ -53,7 +53,11 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn gray btn-info" data-dismiss="modal">TUTUP</button>
+                    <button type="button" class="btn gray btn-warning" data-dismiss="modal">TUTUP</button>
+                    <form action="{{ route('hapus-session-peserta') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Hapus Pelayanan</button>
+                    </form>
                 </div>
             </div>
         </div>

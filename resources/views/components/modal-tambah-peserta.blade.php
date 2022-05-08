@@ -35,42 +35,34 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Ubah Data Kendaraan</h4>
+                    <h4 class="modal-title">Tambah Data Peserta</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body">Silahkan ubah data Kendaraan berikut. </div>
-                <form action="" method="POST" enctype="multipart/form-data">
+                {{-- <div class="modal-body">Silahkan ubah data Kendaraan berikut. </div> --}}
+                <form action="{{ route('post-tambah-peserta') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="container border-dark">
 
                         <div class="row">
-                            <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="detail_nama">Merk Kendaraan</label>
+                                    <label for="detail_nama">Nama Lengkap</label>
                                     <input type="text" class="form-control" id="detail_nama"
                                         placeholder="Masukkan merk kendaraan" name="detail_nama">
                                     <small id="detail_nama" class="form-text text-muted">Contoh : Muh. Khairy Keenan
                                     </small>
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="kendaraan_tahun">Tahun</label>
-                                    <input type="number" class="form-control" id="kendaraan_tahun"
-                                        placeholder="Masukkan merk kendaraan" name="kendaraan_tahun">
-                                    <small id="kendaraan_tahun" class="form-text text-muted">Contoh : DAIHATSU 2022.
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-md-4 col-lg-4">
-                                <div class="form-group">
-                                    <label for="kendaraan_harga_sewa">Harga Sewa</label>
-                                    <input type="number" class="form-control" id="kendaraan_harga_sewa" placeholder="Masukkan merk kendaraan" name="kendaraan_harga_sewa">
-                                    <small id="kendaraan_harga_sewa" class="form-text text-muted">Contoh : 200000
+                                    <label for="detail_nik">NIK</label>
+                                    <input type="number" class="form-control" id="detail_nik"
+                                        placeholder="Masukkan NIK" name="detail_nik">
+                                    {{-- <small id="detail_nik" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
                                     </small>
                                 </div>
                             </div>
@@ -79,20 +71,86 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="kendaraan_max_mil">Max Mil Kendaraan</label>
-                                    <input type="number" class="form-control" id="kendaraan_max_mil"
-                                        placeholder="Masukkan Max Mil kendaraan" name="kendaraan_max_mil">
-                                    <small id="kendaraan_max_mil" class="form-text text-muted">Contoh : 100000 </small>
+                                    <label for="detail_ttl">Tanggal Lahir</label>
+                                    <input type="date" class="form-control" id="detail_ttl"
+                                        placeholder="Masukkan Tanggal Lahir" name="detail_ttl">
+                                    {{-- <small id="detail_ttl" class="form-text text-muted">Contoh : 100000 </small> --}}
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="kendaraan_status">Status Penyewaan</label>
-                                    <select id="kendaraan_status" class="form-control" name="kendaraan_status">
-                                        <option value="" selected>l</option>
-                                        <option value="TERSEDIA">Tersedia</option>
-                                        <option value="RENTAL">Dalam Penyewaan</option>
-                                        <option value="KOSONG">Tidak Tersedia</option>
+                                    <label for="detail_jeniskelamin">Jenis Kelamin</label>
+                                    <select id="detail_jeniskelamin" class="form-control" name="detail_jeniskelamin">
+                                        <option value="" selected>Pilih jenis kelamin...</option>
+                                        <option value="L">Laki-Laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="detail_nama_ayah">Nama Ayah</label>
+                                    <input type="text" class="form-control" id="detail_nama_ayah"
+                                        placeholder="Masukkan nama ayah" name="detail_nama_ayah">
+                                    {{-- <small id="detail_nama_ayah" class="form-text text-muted">Contoh : Muh. Khairy Keenan --}}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="detail_nama_ibu">Nama Ibu</label>
+                                    <input type="text" class="form-control" id="detail_nama_ibu"
+                                        placeholder="Masukkan nama ibu" name="detail_nama_ibu">
+                                    {{-- <small id="detail_nama_ibu" class="form-text text-muted">Contoh : Muh. Khairy Keenan --}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="detail_alamat">Alamat</label>
+                                    <input type="text" class="form-control" id="detail_alamat"
+                                        placeholder="Masukkan Alamat" name="detail_alamat">
+                                    {{-- <small id="detail_alamat" class="form-text text-muted">Contoh : Muh. Khairy Keenan --}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="detail_berat_badan_lahir">Berat Badan Lahir (kg)</label>
+                                    <input type="number" class="form-control" id="detail_berat_badan_lahir"
+                                        placeholder="Masukkan Beran badan lahir" name="detail_berat_badan_lahir">
+                                    {{-- <small id="detail_berat_badan_lahir" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="detail_tinggi_badan_lahir">Tinggi Badan Lahir (cm)</label>
+                                    <input type="number" class="form-control" id="detail_tinggi_badan_lahir"
+                                        placeholder="Masukkan Beran badan lahir" name="detail_tinggi_badan_lahir">
+                                    {{-- <small id="detail_tinggi_badan_lahir" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="detail_riwayat_persalinan">Riwayat Persalinan</label>
+                                    <select id="detail_riwayat_persalinan" class="form-control" name="detail_riwayat_persalinan">
+                                        <option value="" selected>Pilih Riwayat Persalinan...</option>
+                                        <option value="ATERM">ATERM</option>
+                                        <option value="PREMATUR">PREMATUR</option>
                                     </select>
                                 </div>
                             </div>

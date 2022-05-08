@@ -54,6 +54,37 @@ class BackController extends Controller
         return redirect()->route('dashboard')->with('status', 'Peserta pelayan yang dipilih telah selesai, silahkan memilih peserta lain untuk melakukan pelayanan.');
     }
 
+    public function post_tambah_peserta(Request $request)
+    {
+        $validate_data = $request->validate(
+            [
+                'detail_nama' => 'required',
+                'detail_nik' => 'required',
+                'detail_ttl' => 'required',
+                'detail_jeniskelamin' => 'required|filled',
+                'detail_nama_ayah' => 'required',
+                'detail_nama_ibu' => 'required',
+                'detail_alamat' => 'required',
+                'detail_riwayat_persalinan' => 'required|filled',
+                'detail_berat_badan_lahir' => 'required',
+                'detail_tinggi_badan_lahir' => 'required',
+            ],
+            [
+                'detail_nama.required' => 'Nama lengkap tidak boleh kosong',
+                'detail_nik.required' => 'NIK tidak boleh kosong',
+                'detail_ttl.required' => 'Tanggal Lahir tidak boleh kosong',
+                'detail_jeniskelamin.required' => 'Jenis Kelamin tidak boleh kosong',
+                'detail_nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
+                'detail_nama_ibu.required' => 'Nama Ibu tidak boleh kosong',
+                'detail_alamat.required' => 'Alamat tidak boleh kosong',
+                'detail_riwayat_persalinan.required' => 'Riwayat Persalinan tidak boleh kosong',
+                'detail_berat_badan_lahir.required' => 'Berat Badan Lahir tidak boleh kosong',
+                'detail_tinggi_badan_lahir.required' => 'Tinggi Badan Lahir tidak boleh kosong',
+            ]
+        );
+        dd($validate_data);
+    }
+
     public function profile()
     {
         $session_users  = session('data_login');
