@@ -140,7 +140,13 @@
                                         {{ $totalbulan }} Bulan
                                     </td>
                                     <td>
-                                        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#modaldelete{{ $item->id }}">
+                                        <button class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                                            data-target="#modalupdate{{ $item->id }}">
+                                            UBAH
+                                        </button>
+
+                                        <button class="btn btn-danger btn-lg" type="button" data-toggle="modal"
+                                            data-target="#modaldelete{{ $item->id }}">
                                             HAPUS
                                         </button>
 
@@ -158,10 +164,11 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="modal-body">Apakah anda yakin ingin menghapus peserta ini?
+                                                    <div class="modal-body">Apakah anda yakin ingin menghapus peserta
+                                                        ini?
                                                     </div>
-                                                    <form action="{{ route('hapus-peserta', $item->id) }}"
-                                                        method="POST" enctype="multipart/form-data">
+                                                    <form action="{{ route('hapus-peserta', $item->id) }}" method="POST"
+                                                        enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn gray btn-outline-secondary"
@@ -176,6 +183,177 @@
                                             </div>
                                         </div>
                                         {{-- End MODAL DELETE --}}
+
+                                        {{-- MODAL TAMBAH PESERTA --}}
+                                        <div class="modal fade" id="modalupdate{{ $item->id }}" tabindex="1" role="dialog"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Ubah Data Peserta</h4>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">Silahkan ubah data peserta berikut. </div>
+                                                    <form action="{{ route('post-update-peserta', $item->id) }}" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+
+                                                        <div class="container border-dark">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_nama">Nama Lengkap</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="detail_nama"
+                                                                            placeholder="Masukkan merk kendaraan"
+                                                                            name="detail_nama" value="{{ $item->detail_nama }}">
+                                                                        <small id="detail_nama"
+                                                                            class="form-text text-muted">Contoh : Muh.
+                                                                            Keenan
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_nik">NIK</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="detail_nik" placeholder="Masukkan NIK"
+                                                                            name="detail_nik" value="{{ $item->detail_nik }}">
+                                                                        {{-- <small id="detail_nik" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_ttl">Tanggal Lahir</label>
+                                                                        <input type="date" class="form-control"
+                                                                            id="detail_ttl"
+                                                                            placeholder="Masukkan Tanggal Lahir"
+                                                                            name="detail_ttl" value="{{ date("d/m/Y", strtotime($item->detail_ttl)) }}">
+                                                                        {{-- <small id="detail_ttl" class="form-text text-muted">Contoh : 100000 </small> --}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_jeniskelamin">Jenis
+                                                                            Kelamin</label>
+                                                                        <select id="detail_jeniskelamin"
+                                                                            class="form-control"
+                                                                            name="detail_jeniskelamin">
+                                                                            <option value="{{ $item->detail_jeniskelamin }}" selected>{{ $item->detail_jeniskelamin }}
+                                                                            </option>
+                                                                            <option value="L">Laki-Laki</option>
+                                                                            <option value="P">Perempuan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_nama_ayah">Nama Ayah</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="detail_nama_ayah"
+                                                                            placeholder="Masukkan nama ayah"
+                                                                            name="detail_nama_ayah" value="{{ $item->detail_nama_ayah }}">
+                                                                        {{-- <small id="detail_nama_ayah" class="form-text text-muted">Contoh : Muh. Khairy Keenan --}}
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_nama_ibu">Nama Ibu</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="detail_nama_ibu"
+                                                                            placeholder="Masukkan nama ibu"
+                                                                            name="detail_nama_ibu" value="{{ $item->detail_nama_ibu }}">
+                                                                        {{-- <small id="detail_nama_ibu" class="form-text text-muted">Contoh : Muh. Khairy Keenan --}}
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_alamat">Alamat</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="detail_alamat" placeholder="Masukkan Alamat"
+                                                                            name="detail_alamat" value="{{ $item->detail_alamat }}">
+                                                                        {{-- <small id="detail_alamat" class="form-text text-muted">Contoh : Muh. Khairy Keenan --}}
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_berat_badan_lahir">Berat Badan
+                                                                            Lahir (kg)</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="detail_berat_badan_lahir"
+                                                                            placeholder="Masukkan Beran badan lahir"
+                                                                            name="detail_berat_badan_lahir" value="{{ $item->detail_berat_badan_lahir }}">
+                                                                        {{-- <small id="detail_berat_badan_lahir" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_tinggi_badan_lahir">Tinggi Badan
+                                                                            Lahir (cm)</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="detail_tinggi_badan_lahir"
+                                                                            placeholder="Masukkan Beran badan lahir"
+                                                                            name="detail_tinggi_badan_lahir" value="{{ $item->detail_tinggi_badan_lahir }}">
+                                                                        {{-- <small id="detail_tinggi_badan_lahir" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                                                    <div class="form-group">
+                                                                        <label for="detail_riwayat_persalinan">Riwayat
+                                                                            Persalinan</label>
+                                                                        <select id="detail_riwayat_persalinan"
+                                                                            class="form-control"
+                                                                            name="detail_riwayat_persalinan">
+                                                                            <option value="{{ $item->detail_riwayat_persalinan }}" selected>{{ $item->detail_riwayat_persalinan }}"</option>
+                                                                            <option value="ATERM">ATERM</option>
+                                                                            <option value="PREMATUR">PREMATUR</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn gray btn-danger"
+                                                                data-dismiss="modal">Batalkan</button>
+                                                            <button type="submit" class="btn btn-info">
+                                                                Ubah
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- End MODAL TAMBAH PESERTA --}}
                                     </td>
                                 </tr>
                             @endforeach

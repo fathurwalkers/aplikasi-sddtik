@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 use Illuminate\Support\Arr;
 use App\Models\Detail;
+use App\Models\Hasilrekap;
 use App\Models\Login;
 
 class BackController extends Controller
@@ -16,13 +17,25 @@ class BackController extends Controller
     public function index()
     {
         $data = session('peserta');
+        $total_pengguna = Login::all()->count();
+        $total_peserta = Detail::all()->count();
+        $total_pemeriksaan = Hasilrekap::all()->count();
+        $total_pelaksana = Login::where('login_level', 'pelaksana')->count();
         if ($data == null) {
             return view('admin.index', [
-                'data' => $data
+                'data' => $data,
+                'total_pengguna' => $total_pengguna,
+                'total_peserta' => $total_peserta,
+                'total_pemeriksaan' => $total_pemeriksaan,
+                'total_pelaksana' => $total_pelaksana,
             ]);
         } else {
             return view('admin.index', [
-                'data' => $data
+                'data' => $data,
+                'total_pengguna' => $total_pengguna,
+                'total_peserta' => $total_peserta,
+                'total_pemeriksaan' => $total_pemeriksaan,
+                'total_pelaksana' => $total_pelaksana,
             ]);
         }
     }
@@ -114,7 +127,42 @@ class BackController extends Controller
         $data_peserta = new Detail;
         $save_data_peserta = $data_peserta->create($validate_data);
         $save_data_peserta->save();
-        return redirect()->route('dashboard')->with('status', 'Data peserta berhasil ditambahkan.');
+        return redirect()->route('data-peserta')->with('status', 'Data peserta berhasil ditambahkan.');
+    }
+
+    public function post_update_peserta(Request $request, $id)
+    {
+        $data_peserta = Detail::find($id);
+        $validate_data = $request->validate(
+            [
+                'detail_nama' => 'required',
+                'detail_nik' => 'required',
+                'detail_ttl' => 'required',
+                'detail_jeniskelamin' => 'required|filled',
+                'detail_nama_ayah' => 'required',
+                'detail_nama_ibu' => 'required',
+                'detail_alamat' => 'required',
+                'detail_riwayat_persalinan' => 'required|filled',
+                'detail_berat_badan_lahir' => 'required',
+                'detail_tinggi_badan_lahir' => 'required',
+            ],
+            [
+                'detail_nama.required' => 'Nama lengkap tidak boleh kosong',
+                'detail_nik.required' => 'NIK tidak boleh kosong',
+                'detail_ttl.required' => 'Tanggal Lahir tidak boleh kosong',
+                'detail_jeniskelamin.required' => 'Jenis Kelamin tidak boleh kosong',
+                'detail_nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
+                'detail_nama_ibu.required' => 'Nama Ibu tidak boleh kosong',
+                'detail_alamat.required' => 'Alamat tidak boleh kosong',
+                'detail_riwayat_persalinan.required' => 'Riwayat Persalinan tidak boleh kosong',
+                'detail_berat_badan_lahir.required' => 'Berat Badan Lahir tidak boleh kosong',
+                'detail_tinggi_badan_lahir.required' => 'Tinggi Badan Lahir tidak boleh kosong',
+            ]
+        );
+        $save_data_peserta = $data_peserta->create($validate_data);
+        $save_data_peserta->save();
+        return redirect()->route('data-peserta')->with('status', 'Data peserta berhasil diubah.');
+
     }
 
     public function profile()
