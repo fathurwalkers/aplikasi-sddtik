@@ -30,14 +30,14 @@ class GenerateController extends Controller
                     // $data_foto = "default-img/male.jpg";
                     $nama_depan = $faker->firstNameMale();
                     $nama_belakang = $faker->lastNameMale();
-                    $nama_lengkap = $nama_depan . $nama_belakang;
+                    $nama_lengkap = $nama_depan . " " . $nama_belakang;
                     $nik = $faker->nik('male');
                     break;
                 case 'P':
                     // $data_foto = "default-img/female.jpg";
                     $nama_depan = $faker->firstNameFemale();
                     $nama_belakang = $faker->lastNameFemale();
-                    $nama_lengkap = $nama_depan . $nama_belakang;
+                    $nama_lengkap = $nama_depan . " " . $nama_belakang;
                     $nik = $faker->nik('female');
                     break;
             }
@@ -45,8 +45,8 @@ class GenerateController extends Controller
             $data = new Detail;
 
             $ttl = $faker->dateTimeBetween('2013-01-01', '2021-10-25');
-            $nama_ayah = $faker->firstNameMale() . $faker->lastNameMale();
-            $nama_ibu = $faker->firstNameFemale() . $faker->lastNameFemale();
+            $nama_ayah = $faker->firstNameMale() ." ". $faker->lastNameMale();
+            $nama_ibu = $faker->firstNameFemale() ." ". $faker->lastNameFemale();
             $alamat = $faker->address();
 
             $save_data = $data->create([

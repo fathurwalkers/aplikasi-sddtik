@@ -18,6 +18,22 @@ class BackController extends Controller
         return view('admin.index');
     }
 
+    public function pilih_peserta()
+    {
+        $data = Detail::all();
+        return view('pelayanan.pilih-peserta', [
+            'data' => $data
+        ]);
+    }
+
+    public function post_pilih_peserta(Request $request)
+    {
+        $id_peserta = $request->id_peserta;
+        $data = Detail::find($id_peserta);
+        $users = session(['peserta' => $data]);
+        return redirect()->route('dashboard')->with('status', 'Peserta telah dipilih, anda dapat melakukan pelayanan sekarang.');
+    }
+
     public function profile()
     {
         $session_users  = session('data_login');

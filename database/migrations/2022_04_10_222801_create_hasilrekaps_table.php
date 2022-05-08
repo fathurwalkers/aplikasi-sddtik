@@ -25,6 +25,7 @@ class CreateHasilrekapsTable extends Migration
             $table->text('keterangan_kpsp')->nullable();
             $table->text('keterangan_tdd')->nullable();
             $table->text('keterangan_tdl')->nullable();
+            $table->text('keterangan_kmpe')->nullable();
             $table->text('keterangan_mchat')->nullable();
             $table->text('keterangan_gpph')->nullable();
 

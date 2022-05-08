@@ -21,6 +21,8 @@ Route::post('/logout/post', [LoginController::class, 'logout'])->name('logout');
 Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function () {
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
     Route::get('/profile', [BackController::class, 'profile'])->name('profile');
+    Route::get('/pilih-peserta', [BackController::class, 'pilih_peserta'])->name('pilih-peserta');
+    Route::post('/post-pilih-peserta', [BackController::class, 'post_pilih_peserta'])->name('post-pilih-peserta');
     Route::get('/hasil-pemeriksaan', [PelayananController::class, 'hasil_pemeriksaan'])->name('hasil-pemeriksaan');
 
     // ==================================== Pelayanan Route ====================================
