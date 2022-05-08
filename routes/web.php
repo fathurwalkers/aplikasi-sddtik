@@ -41,7 +41,6 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     Route::get('/pelayanan/tdl', [PelayananController::class, 'tdl'])->name('tdl');
     Route::post('/pelayanan/post-tdl', [PelayananController::class, 'post_tdl'])->name('post-tdl');
 
-
     // Deteksi Penyimpangan Mental Emosional Route
     Route::get('/pelayanan/deteksi-dini-penyimpangan-mental', [PelayananController::class, 'deteksi_penyimpangan_mental'])->name('deteksi-penyimpangan-mental');
     Route::get('/pelayanan/kmpe', [PelayananController::class, 'kmpe'])->name('kmpe');
