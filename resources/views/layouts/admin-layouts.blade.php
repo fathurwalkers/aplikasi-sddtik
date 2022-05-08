@@ -143,6 +143,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('data-peserta') }}">
+                            <i class="menu-icon mdi mdi-account"></i>
+                            <span class="menu-title">Data Peserta</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item nav-category">Pemeriksaan</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('hasil-pemeriksaan') }}">

@@ -21,6 +21,10 @@ Route::post('/logout/post', [LoginController::class, 'logout'])->name('logout');
 Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function () {
     Route::get('/', [BackController::class, 'index'])->name('dashboard');
     Route::get('/profile', [BackController::class, 'profile'])->name('profile');
+
+    Route::get('/data-peserta', [BackController::class, 'data_peserta'])->name('data-peserta');
+    Route::get('/data-peserta/hapus/{id}', [BackController::class, 'hapus_peserta'])->name('hapus-peserta');
+
     Route::get('/pilih-peserta', [BackController::class, 'pilih_peserta'])->name('pilih-peserta');
     Route::post('/post-pilih-peserta', [BackController::class, 'post_pilih_peserta'])->name('post-pilih-peserta');
     Route::post('/hapus-session-peserta', [BackController::class, 'hapus_session_peserta'])->name('hapus-session-peserta');

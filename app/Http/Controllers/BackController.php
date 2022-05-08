@@ -30,6 +30,17 @@ class BackController extends Controller
     public function data_peserta()
     {
         $data = Detail::all();
+        return view('admin.data-peserta', [
+            'data' => $data
+        ]);
+    }
+
+    public function hapus_peserta(Request $request, $id)
+    {
+        $peserta_id = $id;
+        $findpeserta = Detail::findOrFail($peserta_id);
+        $findpeserta->forceDelete();
+        return redirect()->route('data-peserta')->with('status', 'Data peserta telah dihapus.');
     }
 
     public function hitung_bulan($id)
