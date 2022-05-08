@@ -15,7 +15,14 @@ class BackController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $data = session('peserta');
+        if ($data == null) {
+            return view('admin.index', [
+                'data' => $data
+            ]);
+        } else {
+            return view('admin.index');
+        }
     }
 
     public function pilih_peserta()

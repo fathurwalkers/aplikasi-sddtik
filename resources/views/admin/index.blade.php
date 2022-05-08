@@ -2,10 +2,56 @@
 @section('title', 'Format Layout')
 
 @push('css')
-    {{-- CSS Code Here --}}
+    <style>
+        .modal-backdrop.show {
+            display: none !important;
+        }
+        .fix-text {
+            font-size: 15px;
+        }
+        .fix-text-h5 {
+            font-size: 12px;
+        }
+        table.dataTable tbody th,
+        table.dataTable tbody td {
+            padding: 6px 8px!important;
+            border-color: #d8d8d8!important;
+            border-top-color: #d8d8d8!important;
+            border-right-color: #d8d8d8!important;
+            border-bottom-color: #d8d8d8!important;
+            border-left-color: #d8d8d8!important;
+            table-layout:fixed!important;
+            white-space: nowrap!important;
+        }
+        .button-text-fix {
+            font-size: 11px!important;
+        }
+        table.dataTable {
+            color: rgb(0, 0, 0)!important;
+        }
+    </style>
 @endpush
 
 @section('main-header', 'Format Layout')
+
+@section('status-pelayanan')
+@if ($data == null)
+<button type="disabled" class="btn btn-md btn-info disabled">
+    <b>Status Pelayanan : NONAKTIF</b>
+</button>
+&nbsp;
+@else
+<button type="submit" class="btn btn-md btn-info"  data-toggle="modal" data-target="#modallihat{{ $data->id }}">
+    <b>Status Pelayanan : AKTIF</b>
+</button>
+&nbsp;
+@endif
+
+@if ($data !== null)
+<x-modal-lihat-peserta-pelayanan :data="$data" />
+@endif
+
+@endsection
 
 @section('main-content')
 

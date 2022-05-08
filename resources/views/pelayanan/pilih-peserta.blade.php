@@ -7,6 +7,13 @@
 
 @section('main-header', 'Pilih Peserta')
 
+@section('status-pelayanan')
+<button type="button" class="btn btn-md btn-info">
+    <b>Tambah Peserta</b>
+</button>
+&nbsp;
+@endsection
+
 @section('main-content')
 
     <div class="container">
