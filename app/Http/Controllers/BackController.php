@@ -82,7 +82,10 @@ class BackController extends Controller
                 'detail_tinggi_badan_lahir.required' => 'Tinggi Badan Lahir tidak boleh kosong',
             ]
         );
-        dd($validate_data);
+        $data_peserta = new Detail;
+        $save_data_peserta = $data_peserta->create($validate_data);
+        $save_data_peserta->save();
+        return redirect()->route('dashboard')->with('status', 'Data peserta berhasil ditambahkan.');
     }
 
     public function profile()
