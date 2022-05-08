@@ -1,6 +1,36 @@
 <div>
+    @push('css')
+    <style>
+        .modal-backdrop.show {
+            display: none !important;
+        }
+        .fix-text {
+            font-size: 15px;
+        }
+        .fix-text-h5 {
+            font-size: 15px;
+        }
+        table.dataTable tbody th,
+        table.dataTable tbody td {
+            padding: 6px 8px!important;
+            border-color: #d8d8d8!important;
+            border-top-color: #d8d8d8!important;
+            border-right-color: #d8d8d8!important;
+            border-bottom-color: #d8d8d8!important;
+            border-left-color: #d8d8d8!important;
+            table-layout:fixed!important;
+            white-space: nowrap!important;
+        }
+        .button-text-fix {
+            font-size: 11px!important;
+        }
+        table.dataTable {
+            color: rgb(0, 0, 0)!important;
+        }
+    </style>
+    @endpush
     {{-- MODAL LIHAT --}}
-    <div class="modal fade" id="modallihat{{ $data->id }}" tabindex="1" role="dialog" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="modallihat{{ $data->id }}" tabindex="1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 

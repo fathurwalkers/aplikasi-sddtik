@@ -21,7 +21,9 @@ class BackController extends Controller
                 'data' => $data
             ]);
         } else {
-            return view('admin.index');
+            return view('admin.index', [
+                'data' => $data
+            ]);
         }
     }
 
