@@ -159,12 +159,12 @@
                     </li>
 
                     <li class="nav-item nav-category">JENIS PELAYANAN</li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('deteksi-penyimpangan-pertumbuhan') }}">
                             <i class="menu-icon mdi mdi-baby"></i>
                             <span class="menu-title">Deteksi Dini <br> Penyimpangan<br> Pertumbuhan</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('deteksi-penyimpangan-perkembangan') }}">
                             <i class="menu-icon mdi mdi-baby"></i>

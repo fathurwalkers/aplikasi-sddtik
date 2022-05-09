@@ -243,10 +243,69 @@ class PelayananController extends Controller
     public function kmpe()
     {
         $session_users  = session('data_login');
+        $session_peserta  = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('pilih-peserta')->with('status', 'Tidak ada peserta yang dipilih, harap melakukan pemilihan peserta pelayanan terlebih dahulu.');
+        }
+        $cek_bulan = $this->hitung_bulan($session_peserta->id);
+        if ($cek_bulan <= 36) {
+            return redirect()->route('dashboard')->with('status', 'Minimal usia (bulan) harus lebih dari 36 Bulan untuk melakukan pemeriksaan Masalah Perilaku Emosional.');
+        }
+        if ($cek_bulan >= 72) {
+            return redirect()->route('dashboard')->with('status', 'Maksimal usia (bulan) tidak lebih dari 72 Bulan untuk melakukan pemeriksaan Masalah Perilaku Emosional.');
+        }
         $users          = Login::find($session_users->id);
         return view('pelayanan.kmpe', [
             'users' => $users
         ]);
+    }
+
+    public function post_kmpe(Request $request)
+    {
+        $session_peserta = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+        } else {
+            // $data = Detail::find($session_peserta->id);
+            $data = Detail::find($session_peserta->id);
+            if ($data == null) {
+                return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+            } else {
+                $totalbulan = $this->hitung_bulan($data->id);
+                $jawaban_kmpe = $request->jawaban_kmpe;
+                dd($jawaban_kmpe);
+                $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $array_hasil = [];
+                foreach ($hasil_pemeriksaan as $hasil) {
+                    if ($hasil->bulan >= $totalbulan) {
+                        $hasil_query = $hasil;
+                        break;
+                    }
+                }
+                $result = Hasilrekap::find($hasil_query["id"]);
+                switch ($request->jawaban_kmpe) {
+                    case 'YA':
+                        $keterangan = "Normal <br />
+                        Pemeriksaan anak sudah sesuai (Normal), silahkan lakukan penilaian kembali pada tahapan usia selanjutnya.";
+                        $status = "NORMAL";
+                        break;
+                    case 'TIDAK':
+                        $keterangan = "Curiga Gangguan Penglihatan<br />
+                        Pemeriksaan anak masuk kategori gangguan penglihatan, silahkan kunjungi pelayanan kesehatan.";
+                        $status = "Gangguan Penglihatan";
+                        break;
+                }
+                $save_result = $result->update([
+                    'tdl' => '1',
+                    'keterangan_tdl' => $keterangan,
+                    'updated_at' => now(),
+                ]);
+
+                $alert = 'Pemeriksaan TDL Telah Berhasil. Status Pemeriksaan : ';
+                $alert .= $status;
+                return redirect()->route('dashboard')->with('status', $alert);
+            }
+        }
     }
 
     public function mchat()

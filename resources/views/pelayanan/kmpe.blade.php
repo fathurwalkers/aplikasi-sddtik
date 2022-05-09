@@ -11,7 +11,7 @@
 
     <div class="container">
 
-        <form action="{{ route('post-tdd') }}" method="POST">
+        <form action="{{ route('post-kmpe') }}" method="POST">
             @csrf
 
             <div class="row">
