@@ -161,6 +161,39 @@ class BackController extends Controller
         );
         $save_data_peserta = $data_peserta->create($validate_data);
         $save_data_peserta->save();
+
+        // HASIL PEMERIKSAAN / REKAPAN DATA ================
+        $find_data = Detail::findOrFail($save_data_peserta->id);
+        $hasil_rekap = new Hasilrekap;
+
+        $number_bulan = [0, 3, 6, 9, 12, 15, 18, 21, 24, 30, 36, 42, 48, 54, 60, 66, 72];
+        $count_number_bulan = count($number_bulan);
+
+        foreach ($number_bulan as $item) {
+            $save_hasil_rekap = $hasil_rekap->create([
+                "bulan" => intval($item),
+                "bbtb" => NULL,
+                "lk" => NULL,
+                "kpsp" => NULL,
+                "tdd" => NULL,
+                "tdl" => NULL,
+                "kmpe" => NULL,
+                "mchat" => NULL,
+                "gpph" => NULL,
+                "keterangan_bbtb" => NULL,
+                "keterangan_lk" => NULL,
+                "keterangan_kpsp" => NULL,
+                "keterangan_tdd" => NULL,
+                "keterangan_tdl" => NULL,
+                "keterangan_kmpe" => NULL,
+                "keterangan_mchat" => NULL,
+                "keterangan_gpph" => NULL,
+                "data_id" => $find_data->id,
+                "created_at" => now(),
+                "updated_at" => now()
+            ]);
+            $save_hasil_rekap->save();
+        }
         return redirect()->route('data-peserta')->with('status', 'Data peserta berhasil diubah.');
 
     }

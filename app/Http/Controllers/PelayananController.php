@@ -30,9 +30,17 @@ class PelayananController extends Controller
     {
         $session_users  = session('data_login');
         $users          = Login::find($session_users->id);
+        $data = Detail::all();
         return view('admin.hasil-pemeriksaan', [
-            'users' => $users
+            'users' => $users,
+            'data' => $data
         ]);
+    }
+
+    public function cetak_hasil_pemeriksaan($id)
+    {
+        $data = Detail::find($id);
+        dd($data);
     }
 
     // DETEKSI PENYIMPANGAN PERTUMBUHAN ======================================================
@@ -154,7 +162,7 @@ class PelayananController extends Controller
                 $result = Hasilrekap::find($hasil_query["id"]);
                 $save_result = $result->update([
                     'tdd' => "1",
-                    'keterangan_tdd' => "1",
+                    'keterangan_tdd' => $keterangan_tdd,
                     'updated_at' => now()
                 ]);
                 return redirect()->route('dashboard')->with('status', $keterangan_tdd);
@@ -271,39 +279,46 @@ class PelayananController extends Controller
             if ($data == null) {
                 return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
             } else {
-                $totalbulan = $this->hitung_bulan($data->id);
-                $jawaban_kmpe = $request->jawaban_kmpe;
-                dd($jawaban_kmpe);
+                $jawaban_tdd = $request->jawaban_tdd;
+                $benar = 0;
+                $salah = 0;
+                foreach ($jawaban_tdd as $item) {
+                    switch ($item) {
+                        case 'YA':
+                            $benar++;
+                            break;
+                        case 'TIDAK':
+                            $salah++;
+                            break;
+                        case null:
+                            $benar = $benar;
+                            $salah = $salah;
+                            break;
+                    }
+                }
+                if ($salah == 14) {
+                    $keterangan_kmpe = "Normal ";
+                    $keterangan_kmpe .= "Pemeriksaan anak sudah sesuai (Normal), silahkan lakukan penilaian kembali pada tahapan usia selanjutnya.";
+                } else {
+                    $keterangan_kmpe = "Kemungkinan anak mengalami masalah mental emosional ";
+                    $keterangan_kmpe .= "Pemeriksaan anak masuk kategori mengalami masalah mental emosional, silahkan kunjungi pelayanan kesehatan.";
+                }
                 $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $cek_bulan = $this->hitung_bulan($data->id);
                 $array_hasil = [];
                 foreach ($hasil_pemeriksaan as $hasil) {
-                    if ($hasil->bulan >= $totalbulan) {
+                    if ($hasil->bulan >= $cek_bulan) {
                         $hasil_query = $hasil;
                         break;
                     }
                 }
                 $result = Hasilrekap::find($hasil_query["id"]);
-                switch ($request->jawaban_kmpe) {
-                    case 'YA':
-                        $keterangan = "Normal <br />
-                        Pemeriksaan anak sudah sesuai (Normal), silahkan lakukan penilaian kembali pada tahapan usia selanjutnya.";
-                        $status = "NORMAL";
-                        break;
-                    case 'TIDAK':
-                        $keterangan = "Curiga Gangguan Penglihatan<br />
-                        Pemeriksaan anak masuk kategori gangguan penglihatan, silahkan kunjungi pelayanan kesehatan.";
-                        $status = "Gangguan Penglihatan";
-                        break;
-                }
                 $save_result = $result->update([
-                    'tdl' => '1',
-                    'keterangan_tdl' => $keterangan,
-                    'updated_at' => now(),
+                    'kmpe' => "1",
+                    'keterangan_kmpe' => $keterangan_kmpe,
+                    'updated_at' => now()
                 ]);
-
-                $alert = 'Pemeriksaan TDL Telah Berhasil. Status Pemeriksaan : ';
-                $alert .= $status;
-                return redirect()->route('dashboard')->with('status', $alert);
+                return redirect()->route('dashboard')->with('status', $keterangan_kmpe);
             }
         }
     }
