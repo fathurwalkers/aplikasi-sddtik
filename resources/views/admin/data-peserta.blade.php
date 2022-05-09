@@ -1,5 +1,5 @@
 @extends('layouts.admin-layouts')
-@section('title', 'Pilih Peserta')
+@section('title', 'Data Peserta')
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
@@ -50,7 +50,7 @@
     </style>
 @endpush
 
-@section('main-header', 'Pilih Peserta')
+@section('main-header', 'Data Peserta')
 
 @section('status-pelayanan')
     <a href="#" class="btn btn-md btn-info" data-toggle="modal" data-target="#modaltambahpeserta">
@@ -368,9 +368,9 @@
             <div class="row">
                 <div class="col-sm-8 col-md-8 col-lg-8">
                     <div class="form-group">
-                        <label for="exampleSelectGender">Pilih Peserta pelayanan : </label>
+                        <label for="exampleSelectGender">Data Peserta pelayanan : </label>
                         <select class="form-control" id="exampleSelectGender" name="id_peserta">
-                            <option selected>Pilih peserta...</option>
+                            <option selected>Data Peserta...</option>
                             @foreach ($data as $item)
                                 <option value="{{ $item->id }}">{{ $item->detail_nama }}</option>
                             @endforeach

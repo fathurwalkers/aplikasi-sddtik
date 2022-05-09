@@ -40,6 +40,22 @@ class BackController extends Controller
         }
     }
 
+    public function data_pelaksana()
+    {
+        $data = Login::where('login_level', 'pelaksana')->get();
+        return view('admin.data-pelaksana', [
+            'data' => $data,
+        ]);
+    }
+
+    public function hapus_pelaksana(Request $request, $id)
+    {
+        $pelaksana_id = $id;
+        $findpelaksana = Login::findOrFail($pelaksana_id);
+        $findpelaksana->forceDelete();
+        return redirect()->route('data-pelaksana')->with('status', 'Data Pelaksana telah dihapus.');
+    }
+
     public function data_peserta()
     {
         $data = Detail::all();

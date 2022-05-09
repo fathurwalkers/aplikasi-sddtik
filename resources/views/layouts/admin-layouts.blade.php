@@ -143,6 +143,14 @@
                         </a>
                     </li>
 
+                    @if ($users->login_level == "admin")
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('data-pelaksana') }}">
+                            <i class="menu-icon mdi mdi-account"></i>
+                            <span class="menu-title">Data Pelaksana</span>
+                        </a>
+                    </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('data-peserta') }}">
                             <i class="menu-icon mdi mdi-account"></i>
