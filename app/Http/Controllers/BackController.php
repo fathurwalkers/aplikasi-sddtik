@@ -149,6 +149,7 @@ class BackController extends Controller
     public function post_update_peserta(Request $request, $id)
     {
         $data_peserta = Detail::find($id);
+        $date_cek = $request->detail_ttl;
         $validate_data = $request->validate(
             [
                 'detail_nama' => 'required',

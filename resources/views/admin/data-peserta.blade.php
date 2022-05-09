@@ -211,7 +211,7 @@
                                                                         <label for="detail_nama">Nama Lengkap</label>
                                                                         <input type="text" class="form-control"
                                                                             id="detail_nama"
-                                                                            placeholder="Masukkan merk kendaraan"
+                                                                            placeholder="Masukkan merk nama lengkap..."
                                                                             name="detail_nama" value="{{ $item->detail_nama }}">
                                                                         <small id="detail_nama"
                                                                             class="form-text text-muted">Contoh : Muh.
@@ -238,7 +238,7 @@
                                                                         <input type="date" class="form-control"
                                                                             id="detail_ttl"
                                                                             placeholder="Masukkan Tanggal Lahir"
-                                                                            name="detail_ttl" value="{{ date("d/m/Y", strtotime($item->detail_ttl)) }}">
+                                                                            name="detail_ttl" value="{{ date('m/d/Y', strtotime($item->detail_ttl)) }}">
                                                                         {{-- <small id="detail_ttl" class="form-text text-muted">Contoh : 100000 </small> --}}
                                                                     </div>
                                                                 </div>
