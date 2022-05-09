@@ -40,7 +40,11 @@ class PelayananController extends Controller
     public function cetak_hasil_pemeriksaan($id)
     {
         $data = Detail::find($id);
-        return redirect()->route('dashboard')->with('status', 'Fitur ini sedang dalam proses pengupload-an, silahkan kembali jika fitur ini telah aktif.');
+        $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+        return view('admin.cetak-hasil-pemeriksaan', [
+            'data' => $data,
+            'hasil_pemeriksaan' => $hasil_pemeriksaan,
+        ]);
     }
 
     // DETEKSI PENYIMPANGAN PERTUMBUHAN ======================================================
@@ -279,10 +283,10 @@ class PelayananController extends Controller
             if ($data == null) {
                 return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
             } else {
-                $jawaban_tdd = $request->jawaban_tdd;
+                $jawaban_kmpe = $request->jawaban_kmpe;
                 $benar = 0;
                 $salah = 0;
-                foreach ($jawaban_tdd as $item) {
+                foreach ($jawaban_kmpe as $item) {
                     switch ($item) {
                         case 'YA':
                             $benar++;
