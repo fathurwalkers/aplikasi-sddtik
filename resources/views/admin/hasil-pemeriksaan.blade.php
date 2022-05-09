@@ -140,12 +140,9 @@
                                         {{ $totalbulan }} Bulan
                                     </td>
                                     <td>
-                                        <form action="{{ route('cetak-hasil-pemeriksaan', $item->id) }}" method="GET">
-                                            @csrf
-                                            <button class="btn btn-info btn-md" type="submit">
-                                                CETAK HASIL PEMERIKSAAN
-                                            </button>
-                                        </form>
+                                        <a class="btn btn-info btn-md" href="{{ route('cetak-hasil-pemeriksaan', $item->id) }}" target="_blank">
+                                            CETAK HASIL PEMERIKSAAN
+                                        </a>
 
                                         {{-- <button class="btn btn-danger btn-lg" type="button" data-toggle="modal"
                                             data-target="#modaldelete{{ $item->id }}">
