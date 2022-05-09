@@ -40,7 +40,7 @@ class PelayananController extends Controller
     public function cetak_hasil_pemeriksaan($id)
     {
         $data = Detail::find($id);
-        dd($data);
+        return redirect()->route('dashboard')->with('status', 'Fitur ini sedang dalam proses pengupload-an, silahkan kembali jika fitur ini telah aktif.');
     }
 
     // DETEKSI PENYIMPANGAN PERTUMBUHAN ======================================================
