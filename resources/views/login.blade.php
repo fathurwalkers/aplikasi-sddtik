@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" name="login_username">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="login_password">
                                 </div>
@@ -76,17 +76,17 @@
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">
                                         <input type="checkbox" class="form-check-input">
-                                        Keep me signed in
+                                        Tetap login
                                         </label>
                                     </div>
-                                    <a href="#" class="auth-link text-black">Forgot password?</a>
+                                    <a href="#" class="auth-link text-black">lupa password?</a>
                                 </div>
-                                
+
                                 <div class="text-center mt-4 fw-light">
                                     Belum punya akun? <a href="{{ route('register') }}" class="text-primary">Daftar disini!</a>
                                 </div>
 
-                            </form> 
+                            </form>
 
                         </div>
                     </div>
