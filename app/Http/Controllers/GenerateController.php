@@ -58,7 +58,8 @@ class GenerateController extends Controller
                 "detail_nama_ibu" => $nama_ibu,
                 "detail_alamat" => $alamat,
                 "detail_riwayat_persalinan" => $random_riwayat_persalinan,
-                "detail_berat_badan_lahir" => $faker->numberBetween(1,10),
+                // "detail_berat_badan_lahir" => $faker->numberBetween(1,10),
+                "detail_berat_badan_lahir" => $faker->randomFloat(2,10,400),
                 "detail_tinggi_badan_lahir" => $faker->numberBetween(20,120),
                 "created_at" => now(),
                 "updated_at" => now()

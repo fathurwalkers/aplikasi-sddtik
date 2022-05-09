@@ -7,6 +7,12 @@
 
 @section('main-header', 'Profil Pengguna')
 
+@section('status-pelayanan')
+<button type="button" class="btn btn-md btn-info" onclick="location.href = '{{ route('pilih-peserta') }}';">
+    <b>Pilih Peserta</b>
+</button>
+@endsection
+
 @section('main-content')
 
 <div class="row">
@@ -41,7 +47,7 @@
 			</tr>
 		</table>
 	</div>
-	
+
 </div>
 
 @endsection

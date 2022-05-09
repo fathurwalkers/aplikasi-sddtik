@@ -19,8 +19,8 @@ class CreateDetailsTable extends Migration
             $table->string('detail_nama_ibu')->nullable();
             $table->string('detail_alamat')->nullable();
             $table->string('detail_riwayat_persalinan')->nullable();
-            $table->integer('detail_berat_badan_lahir')->nullable();
-            $table->integer('detail_tinggi_badan_lahir')->nullable();
+            $table->float('detail_berat_badan_lahir')->nullable();
+            $table->float('detail_tinggi_badan_lahir')->nullable();
 
             // $table->unsignedBigInteger('login_id')->nullable()->default(null);
             // $table->foreign('login_id')->references('id')->on('login')->onDelete('cascade');

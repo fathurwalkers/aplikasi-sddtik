@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <label for="detail_nama">Nama Lengkap</label>
                                     <input type="text" class="form-control" id="detail_nama"
-                                        placeholder="Masukkan merk kendaraan" name="detail_nama">
+                                        placeholder="Masukkan nama lengkap" name="detail_nama">
                                     <small id="detail_nama" class="form-text text-muted">Contoh : Muh. Khairy Keenan
                                     </small>
                                 </div>
@@ -125,7 +125,7 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="detail_berat_badan_lahir">Berat Badan Lahir (kg)</label>
+                                    <label for="detail_berat_badan_lahir">Berat Badan Lahir (gram)</label>
                                     <input type="number" class="form-control" id="detail_berat_badan_lahir"
                                         placeholder="Masukkan Beran badan lahir" name="detail_berat_badan_lahir">
                                     {{-- <small id="detail_berat_badan_lahir" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
@@ -151,6 +151,7 @@
                                         <option value="" selected>Pilih Riwayat Persalinan...</option>
                                         <option value="ATERM">ATERM</option>
                                         <option value="PREMATUR">PREMATUR</option>
+                                        <option value="POST TERM">POST TERM</option>
                                     </select>
                                 </div>
                             </div>
