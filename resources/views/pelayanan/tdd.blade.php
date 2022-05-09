@@ -22,7 +22,39 @@
                             Apakah anak mulai menggunakan kata-kata lain, selain kata mama, papa, anggota keluarga lain dan hewan peliharaan? <br />
                             Apakah anak mulai mengungkapkan kata yang berarti "milik" misal "susu kamu", "bonekaku"?
                         </label>
-                        <select class="form-control" id="exampleSelectGender" name="jawaban_tdl">
+                        <select class="form-control" id="exampleSelectGender" name="jawaban_tdd[]">
+                            <option selected value="">Pilih jawaban...</option>
+                            <option value="YA">YA</option>
+                            <option value="TIDAK">TIDAK</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                    <div class="form-group">
+                        <label for="exampleSelectGender">
+                            1. Kemampuan Reseptif <br />
+                            Apakah anak dapat mengerjakan 2 macam perintah dalam satu kalimat, seperti ambil sepatu dan taruh disini, tanpa diberi contoh ? <br />
+                            Apakah anak dapat menunjuk minimal 2 nama benda didepannya (cangkir, bola, sendok) ?
+                        </label>
+                        <select class="form-control" id="exampleSelectGender" name="jawaban_tdd[]">
+                            <option selected value="">Pilih jawaban...</option>
+                            <option value="YA">YA</option>
+                            <option value="TIDAK">TIDAK</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                    <div class="form-group">
+                        <label for="exampleSelectGender">
+                            1. Kemampuan Visual <br />
+                            Apakah anak secara spontan memulai permainan dengan gerakan tubuh, seperti pok ame-ame atau cilukba ?<br />
+                            Apakah anak anda menunjuk dengan jari telunjuk bila ingin sesuatu, bukan dengan cara memegang tangan semua jari ?
+                        </label>
+                        <select class="form-control" id="exampleSelectGender" name="jawaban_tdd[]">
                             <option selected value="">Pilih jawaban...</option>
                             <option value="YA">YA</option>
                             <option value="TIDAK">TIDAK</option>

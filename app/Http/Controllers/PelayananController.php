@@ -96,6 +96,72 @@ class PelayananController extends Controller
         ]);
     }
 
+    public function post_tdd(Request $request)
+    {
+        $session_peserta = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+        } else {
+            // $data = Detail::find($session_peserta->id);
+            $data = Detail::find($session_peserta->id);
+            if ($data == null) {
+                return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+            } else {
+                $jawaban_tdd = $request->jawaban_tdd;
+                $benar = 0;
+                $salah = 0;
+                foreach ($jawaban_tdd as $item) {
+                    switch ($item) {
+                        case 'YA':
+                            $benar++;
+                            break;
+                        case 'TIDAK':
+                            $salah++;
+                            break;
+                        case null:
+                            $benar = $benar;
+                            $salah = $salah;
+                            break;
+                    }
+                }
+                switch ($benar) {
+                    case 3:
+                        $keterangan_tdd = "Normal ";
+                        $keterangan_tdd .= "Perkembangan anak sesuai dengan tahapan usianya, silahkan lakukan penilaian kembali pada tahapan usia selanjutnya.";
+                        break;
+                    case 2:
+                        $keterangan_tdd = "Penyimpangan ";
+                        $keterangan_tdd .= "Perkembangan anak masuk kategori menyimpang, silahkan kunjungi pelayanan kesehatan.";
+                        break;
+                    case 1:
+                        $keterangan_tdd = "Penyimpangan ";
+                        $keterangan_tdd .= "Perkembangan anak masuk kategori menyimpang, silahkan kunjungi pelayanan kesehatan.";
+                        break;
+                    case 1:
+                        $keterangan_tdd = "Penyimpangan ";
+                        $keterangan_tdd .= "Perkembangan anak masuk kategori menyimpang, silahkan kunjungi pelayanan kesehatan.";
+                        break;
+                }
+                $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $cek_bulan = $this->hitung_bulan($data->id);
+                $array_hasil = [];
+                foreach ($hasil_pemeriksaan as $hasil) {
+                    if ($hasil->bulan >= $cek_bulan) {
+                        $hasil_query = $hasil;
+                        break;
+                    }
+                }
+                $result = Hasilrekap::find($hasil_query["id"]);
+                $save_result = $result->update([
+                    'tdd' => "1",
+                    'keterangan_tdd' => "1",
+                    'updated_at' => now()
+                ]);
+                return redirect()->route('dashboard')->with('status', $keterangan_tdd);
+            }
+        }
+    }
+
     public function tdl()
     {
         $session_users  = session('data_login');
