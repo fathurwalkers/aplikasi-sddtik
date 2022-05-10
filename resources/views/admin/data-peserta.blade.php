@@ -238,7 +238,7 @@
                                                                         <input type="date" class="form-control"
                                                                             id="detail_ttl"
                                                                             placeholder="Masukkan Tanggal Lahir"
-                                                                            name="detail_ttl" value="{{ date('m/d/Y', strtotime($item->detail_ttl)) }}">
+                                                                            name="detail_ttl" value="">
                                                                         {{-- <small id="detail_ttl" class="form-text text-muted">Contoh : 100000 </small> --}}
                                                                     </div>
                                                                 </div>
@@ -331,7 +331,7 @@
                                                                         <select id="detail_riwayat_persalinan"
                                                                             class="form-control"
                                                                             name="detail_riwayat_persalinan">
-                                                                            <option value="{{ $item->detail_riwayat_persalinan }}" selected>{{ $item->detail_riwayat_persalinan }}"</option>
+                                                                            <option value="{{ $item->detail_riwayat_persalinan }}" selected>{{ $item->detail_riwayat_persalinan }}</option>
                                                                             <option value="ATERM">ATERM</option>
                                                                             <option value="PREMATUR">PREMATUR</option>
                                                                         </select>
