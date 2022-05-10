@@ -301,7 +301,7 @@
                                                                     <div class="form-group">
                                                                         <label for="detail_berat_badan_lahir">Berat Badan
                                                                             Lahir (kg)</label>
-                                                                        <input type="number" class="form-control"
+                                                                        <input type="number" step="any" class="form-control"
                                                                             id="detail_berat_badan_lahir"
                                                                             placeholder="Masukkan Beran badan lahir"
                                                                             name="detail_berat_badan_lahir" value="{{ $item->detail_berat_badan_lahir }}">

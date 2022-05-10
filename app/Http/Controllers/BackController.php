@@ -152,6 +152,8 @@ class BackController extends Controller
             'detail_riwayat_persalinan' => $validate_data["detail_riwayat_persalinan"],
             'detail_berat_badan_lahir' => $validate_data["detail_berat_badan_lahir"],
             'detail_tinggi_badan_lahir' => $validate_data["detail_tinggi_badan_lahir"],
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         $save_data_peserta->save();
         return redirect()->route('data-peserta')->with('status', 'Data peserta berhasil ditambahkan.');
@@ -161,12 +163,16 @@ class BackController extends Controller
     {
         $data_peserta = Detail::find($id);
         $req_date = $request->detail_ttl;
-        if
+        if ($req_date == null) {
+            $detail_ttl = $data_peserta->detail_ttl;
+        } else {
+            $detail_ttl = $req_date;
+        }
         $validate_data = $request->validate(
             [
                 'detail_nama' => 'required',
                 'detail_nik' => 'required',
-                'detail_ttl' => 'required',
+                // 'detail_ttl' => 'required',
                 'detail_jeniskelamin' => 'required|filled',
                 'detail_nama_ayah' => 'required',
                 'detail_nama_ibu' => 'required',
@@ -178,7 +184,7 @@ class BackController extends Controller
             [
                 'detail_nama.required' => 'Nama lengkap tidak boleh kosong',
                 'detail_nik.required' => 'NIK tidak boleh kosong',
-                'detail_ttl.required' => 'Tanggal Lahir tidak boleh kosong',
+                // 'detail_ttl.required' => 'Tanggal Lahir tidak boleh kosong',
                 'detail_jeniskelamin.required' => 'Jenis Kelamin tidak boleh kosong',
                 'detail_nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
                 'detail_nama_ibu.required' => 'Nama Ibu tidak boleh kosong',
@@ -189,12 +195,10 @@ class BackController extends Controller
             ]
         );
         $save_data_peserta = $data_peserta->update($validate_data);
-        $save_data_peserta->save();
         $save_data_peserta = $data_peserta->update([
             'detail_ttl' => $detail_ttl,
             'updated_at' => now()
         ]);
-        $save_data_peserta->save();
         return redirect()->route('data-peserta')->with('status', 'Data peserta berhasil diubah.');
 
     }

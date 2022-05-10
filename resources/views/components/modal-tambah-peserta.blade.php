@@ -126,7 +126,7 @@
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label for="detail_berat_badan_lahir">Berat Badan Lahir (gram)</label>
-                                    <input type="number" class="form-control" id="detail_berat_badan_lahir"
+                                    <input type="number" step="any" class="form-control" id="detail_berat_badan_lahir"
                                         placeholder="Masukkan Beran badan lahir" name="detail_berat_badan_lahir">
                                     {{-- <small id="detail_berat_badan_lahir" class="form-text text-muted">Contoh : DAIHATSU 2022. --}}
                                     </small>
