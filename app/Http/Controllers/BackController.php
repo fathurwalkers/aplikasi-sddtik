@@ -211,4 +211,14 @@ class BackController extends Controller
             'users' => $users
         ]);
     }
+
+    public function post_ubah_profile(Request $request, $id)
+    {
+        dump($request->login_nama);
+        dump($request->login_username);
+        dump($request->login_email);
+        dump($request->login_telepon);
+        dump($request->password_lama);
+        dump($request->password_baru);
+    }
 }
