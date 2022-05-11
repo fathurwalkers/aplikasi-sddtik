@@ -56,6 +56,48 @@ class BackController extends Controller
         return redirect()->route('data-pelaksana')->with('status', 'Data Pelaksana telah dihapus.');
     }
 
+    public function post_tambah_pelaksana(Request $request)
+    {
+        $pelaksana = new Login;
+        $validate_data = $request->validate(
+            [
+                'login_nama' => 'required',
+                'login_username' => 'required',
+                'login_email' => 'required',
+                'login_telepon' => 'required',
+            ],
+            [
+                'login_nama.required' => 'Nama lengkap tidak boleh kosong',
+                'login_username.required' => 'Username tidak boleh kosong',
+                'login_email.required' => 'Email tidak boleh kosong',
+                'login_telepon.required' => 'No. HP / Telepon tidak boleh kosong',
+            ]
+        );
+        $hashPassword = Hash::make('12345', [
+            'rounds' => 12,
+        ]);
+        $token_raw = Str::random(16);
+        $token = Hash::make($token_raw, [
+            'rounds' => 12,
+        ]);
+        $level = "pelaksana";
+        $login_status = "verified";
+        $save_pelaksana = $pelaksana->create([
+            'login_nama' => $validate_data["login_nama"],
+            'login_username' => $validate_data["login_username"],
+            'login_password' => $hashPassword,
+            'login_email' => $validate_data["login_email"],
+            'login_telepon' => $validate_data["login_telepon"],
+            'login_token' => $token,
+            'login_level' => $level,
+            'login_status' => $login_status,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        $save_pelaksana->save();
+        return redirect()->route('data-pelaksana')->with('status', 'Data Pelaksana berhasil ditambahkan.');
+    }
+
     public function data_peserta()
     {
         $data = Detail::all();

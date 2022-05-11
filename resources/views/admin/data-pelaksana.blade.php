@@ -113,10 +113,10 @@
                                     <td>{{ $item->login_email }}</td>
                                     <td>{{ $item->login_telepon }}</td>
                                     <td>
-                                        <button class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                                        {{-- <button class="btn btn-info btn-lg" type="button" data-toggle="modal"
                                             data-target="#modalupdate{{ $item->id }}">
                                             UBAH
-                                        </button>
+                                        </button> --}}
 
                                         <button class="btn btn-danger btn-lg" type="button" data-toggle="modal"
                                             data-target="#modaldelete{{ $item->id }}">
