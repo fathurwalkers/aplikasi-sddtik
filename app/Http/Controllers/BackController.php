@@ -214,11 +214,39 @@ class BackController extends Controller
 
     public function post_ubah_profile(Request $request, $id)
     {
-        dump($request->login_nama);
-        dump($request->login_username);
-        dump($request->login_email);
-        dump($request->login_telepon);
-        dump($request->password_lama);
-        dump($request->password_baru);
+        $pelaksana = Login::find($id);
+        if ($pelaksana == null) {
+            return redirect()->route('profile')->with('status', 'Data Pengguna tidak ditemukan.');
+        } else {
+            $password_lama = $request->password_lama;
+            $password_baru = $request->password_baru;
+            if ($password_lama == null || $password_baru == null) {
+                $password = $pelaksana->login_password;
+                $save_pelaksanan = $pelaksana->update([
+                    'login_nama' => $request->login_nama,
+                    'login_username' => $request->login_username,
+                    'login_email' => $request->login_email,
+                    'login_telepon' => $request->login_telepon,
+                    'updated_at' => now()
+                ]);
+                return redirect()->route('profile')->with('status', 'Data Pengguna anda telah berhasil diubah.');
+            } else {
+                $cek_password = Hash::check($password_lama, $pelaksana->login_password);
+                $hash_password_baru = Hash::make($password_baru, [
+                    'rounds' => 12,
+                ]);
+                if ($cek_password == true) {
+                    $save_pelaksanan = $pelaksana->update([
+                        'login_nama' => $request->login_nama,
+                        'login_username' => $request->login_username,
+                        'login_password' => $hash_password_baru,
+                        'login_email' => $request->login_email,
+                        'login_telepon' => $request->login_telepon,
+                        'updated_at' => now()
+                    ]);
+                    return redirect()->route('profile')->with('status', 'Data Pengguna telah berhasil diubah, password anda juga telah diubah silahkan logout dan login kembali untuk menyelesaikan proses pergantian password anda.');
+                }
+            }
+        }
     }
 }
