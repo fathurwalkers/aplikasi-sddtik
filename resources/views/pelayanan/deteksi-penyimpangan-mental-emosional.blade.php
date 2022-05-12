@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        {{-- <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="col-sm-4 col-md-4 col-lg-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><b>M-CHAT </b></h5>
@@ -39,7 +39,7 @@
                     <a href="{{ route('gpph') }}" class="btn btn-info mt-3"><b>Mulai Tes ></b></a>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
     </div>
 
