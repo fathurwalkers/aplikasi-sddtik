@@ -85,26 +85,140 @@ class PelayananController extends Controller
                 $berat_badan = $request->jawaban_bb;
                 $tinggi_badan = $request->jawaban_tb;
                 switch ($cek_bulan) {
-                    case $cek_bulan < 66:
-                        if ($berat_badan < 4.600 && $tinggi_badan < 40) {
+                    case $cek_bulan <= 3:
+                        if ($berat_badan <= 4.600 && $tinggi_badan <= 40) {
                             $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
-                            echo $hasil_bbtb;
-                            die;
-                        } elseif ($berat_badan < 5.700 && $tinggi_badan < 60) {
+                        } elseif ($berat_badan <= 5.700 && $tinggi_badan <= 60) {
                             $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
-                            echo $hasil_bbtb;
-                            die;
-                        } elseif ($berat_badan > 5.700 && $tinggi_badan > 60) {
+                        } elseif ($berat_badan >= 5.700 && $tinggi_badan >= 60) {
                             $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
-                            echo $hasil_bbtb;
-                            die;
                         } else {
-                            echo "FAIL";
-                            die;
                             return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
                         }
                         break;
+                    case $cek_bulan <= 6:
+                        if ($berat_badan <= 5.900 && $tinggi_badan <= 52) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 7.400 && $tinggi_badan <= 66) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 7.400 && $tinggi_badan >= 66) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 9:
+                        if ($berat_badan <= 7.100 && $tinggi_badan <= 56) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 8.900 && $tinggi_badan <= 70) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 8.900 && $tinggi_badan >= 70) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 12:
+                        if ($berat_badan <= 7.900 && $tinggi_badan <= 59) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 9.900 && $tinggi_badan <= 74) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 9.900 && $tinggi_badan >= 74) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 15:
+                        if ($berat_badan <= 8.500 && $tinggi_badan <= 62) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 10.600 && $tinggi_badan <= 78) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 10.600 && $tinggi_badan >= 78) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 18:
+                        if ($berat_badan <= 9.000 && $tinggi_badan <= 65) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 11.300 && $tinggi_badan <= 81) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 11.300 && $tinggi_badan >= 81) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 21:
+                        if ($berat_badan <= 9.500 && $tinggi_badan <= 67) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 11.900 && $tinggi_badan <= 84) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 11.900 && $tinggi_badan >= 84) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 24:
+                        if ($berat_badan <= 9.900 && $tinggi_badan <= 69) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 12.400 && $tinggi_badan <= 87) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 12.400 && $tinggi_badan >= 87) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 24:
+                        if ($berat_badan <= 10.800 && $tinggi_badan <= 73) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 13.500 && $tinggi_badan <= 92) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 13.500 && $tinggi_badan >= 92) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan <= 24:
+                        if ($berat_badan <= 11.600 && $tinggi_badan <= 76) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan <= 14.500 && $tinggi_badan <= 96) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } elseif ($berat_badan >= 14.500 && $tinggi_badan >= 96) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                        } else {
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                    case $cek_bulan > 24:
+                        return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini. hanya maksimal usian 3 Tahun (36 Bulan) saja yang dapat melakukan pelayanan berat badan terhadap tinggi badan ini.');
+                        break;
                 }
+                $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $array_hasil = [];
+                foreach ($hasil_pemeriksaan as $hasil) {
+                    if ($hasil->bulan >= $cek_bulan) {
+                        $hasil_query = $hasil;
+                        break;
+                    }
+                }
+                $save_data = $data->update([
+                    'detail_berat_badan_lahir' => $berat_badan,
+                    'detail_tinggi_badan_lahir' => $tinggi_badan,
+                    'updated_at' => now(),
+                ]);
+                $result = Hasilrekap::find($hasil_query["id"]);
+                $save_result = $result->update([
+                    'bbtb' => "1",
+                    'keterangan_bbtb' => $hasil_bbtb,
+                    'updated_at' => now()
+                ]);
+                return redirect()->route('dashboard')->with('status', $hasil_bbtb);
             }
         }
     }

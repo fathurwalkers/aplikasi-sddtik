@@ -179,12 +179,12 @@
                             <span class="menu-title">Deteksi Dini <br> Penyimpangan<br> Perkembangan</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('deteksi-penyimpangan-mental') }}">
                             <i class="menu-icon mdi mdi-baby"></i>
                             <span class="menu-title">Deteksi Dini <br> Penyimpangan<br> Mental Emosional</span>
                         </a>
-                    </li>
+                    </li> --}}
 
 
                     {{-- <li class="nav-item nav-category">TES & DETEKSI</li>

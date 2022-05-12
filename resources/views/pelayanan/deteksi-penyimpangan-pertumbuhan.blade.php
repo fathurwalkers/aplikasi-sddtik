@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6 col-md-6 col-lg-6">
+        {{-- <div class="col-sm-6 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><b>LK</b></h5>
@@ -29,7 +29,7 @@
                     <a href="{{ route('lk') }}" class="btn btn-info mt-3"><b>Mulai Tes ></b></a>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 
