@@ -47,7 +47,12 @@
             background-color: gainsboro;
         }
 
-
+        .table>:not(caption)>*>* {
+            padding: 0.5rem 0.5rem;
+            background-color: white!important;
+            border-bottom-width: 1px;
+            box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+        }
 
     </style>
 </head>
@@ -64,37 +69,100 @@
             </div>
         </div>
         <div class="row mb-4">
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                Nama <br />
-                NIK <br />
-                Tanggal Lahir <br />
-                Jenis Kelamin <br />
-                Nama Ibu <br />
-                Nama Ayah <br />
-                Alamat <br />
-                Riwayat Persalinan <br />
-                Berat Badan Lahir <br />
-                Tinggi Badan Lahir <br />
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline">
+                    <li class="list-inline-item">Nama Lengkap</li>
+                    <li class="list-inline-item"> : {{ $data->detail_nama }}</li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">NIK</li>
+                    <li class="list-inline-item"> : {{ $data->detail_nik }}</li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">TTL</li>
+                    <li class="list-inline-item"> : {{ date("d/m/Y", strtotime($data->detail_nik)) }}</li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">Jenis Kelamin</li>
+                    <li class="list-inline-item"> :
+                        @switch($data->detail_jeniskelamin)
+                            @case("L")
+                                Laki - Laki
+                                @break
+                            @case("P")
+                                Perempuan
+                                @break
+                        @endswitch
+                    </li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">Nama ayah</li>
+                    <li class="list-inline-item"> : {{ $data->detail_nama_ayah }}</li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">Nama ibu</li>
+                    <li class="list-inline-item"> : {{ $data->detail_nama_ibu }}</li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">Alamat</li>
+                    <li class="list-inline-item"> : {{ $data->detail_alamat }}</li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">Berat Badan Lahir (gram)</li>
+                    <li class="list-inline-item"> : {{ $data->detail_berat_badan_lahir }}</li>
+                </ul>
+                <ul class="list-inline">
+                    <li class="list-inline-item">Tinggi Badan Lahir (cm)</li>
+                    <li class="list-inline-item"> : {{ $data->detail_tinggi_badan_lahir }}</li>
+                </ul>
             </div>
-            <div class="col-sm-8 col-md-8 col-lg-8">
-                : {{ $data->detail_nama }} <br />
-                : {{ $data->detail_nik }} <br />
-                : {{ date("d/m/Y", strtotime($data->detail_ttl)) }} <br />
-                :
-                @switch($data->jeniskelamin)
-                    @case("L")
-                        Laki-Laki <br />
-                        @break
-                    @case("P")
-                        Perempuan <br />
-                        @break
-                @endswitch
-                : {{ $data->detail_nama_ayah }} <br />
-                : {{ $data->detail_nama_ibu }} <br />
-                : {{ $data->detail_alamat }} <br />
-                : {{ $data->detail_riwayat_persalinan }} <br />
-                : {{ $data->detail_berat_badan_lahir }} <br />
-                : {{ $data->detail_tinggi_badan_lahir }} <br />
+        </div>
+        <hr />
+        <div class="row mb-1">
+            <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                <h5>Keterangan Pemeriksaan</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <table class="table table-bordered border-1">
+                    <thead>
+                        <tr class="text-dark">
+                            <td class="text-dark">Bulan</td>
+                            <td class="text-dark">Waktu Pemeriksaan Terakhir</td>
+                            <td class="text-dark">BB/TB</td>
+                            <td class="text-dark">LK</td>
+                            <td class="text-dark">KPSP</td>
+                            <td class="text-dark">TDD</td>
+                            <td class="text-dark">TDL</td>
+                            <td class="text-dark">KMPE</td>
+                            <td class="text-dark">M-CHAT</td>
+                            <td class="text-dark">GPPH</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($hasil_pemeriksaan as $item)
+                            <tr>
+                                <td>{{ $item->bulan }}</td>
+                                <td>
+                                    @if ($item->created_at == $item->updated_at)
+                                        Tidak ada
+                                    @else
+                                        {{ date("d/M/Y", strtotime($item->updated_at)) }}
+                                    @endif
+                                </td>
+                                <td>{{ $item->keterangan_bbtb }}</td>
+                                <td>{{ $item->keterangan_lk }}</td>
+                                <td>{{ $item->keterangan_kpsp }}</td>
+                                <td>{{ $item->keterangan_tdd }}</td>
+                                <td>{{ $item->keterangan_tdl }}</td>
+                                <td>{{ $item->keterangan_kmpe }}</td>
+                                <td>{{ $item->keterangan_mchat }}</td>
+                                <td>{{ $item->keterangan_gpph }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="row">
@@ -116,7 +184,7 @@
                             <th></th>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>Bulan</td>
                             <td>BB/TB</td>
                             <td>LK</td>
                             <td>KPSP</td>
@@ -125,7 +193,6 @@
                             <td>KMPE</td>
                             <td>M-CHAT</td>
                             <td>GPPH</td>
-                            <td style="">KET</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -136,12 +203,7 @@
                                     {{ $item->bulan }}
                                 </td>
                                 <td>
-                                    @if ($item->bb == "1")
-                                        ✅
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($item->tb == "1")
+                                    @if ($item->bbtb == "1")
                                         ✅
                                     @endif
                                 </td>

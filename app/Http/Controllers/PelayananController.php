@@ -60,10 +60,53 @@ class PelayananController extends Controller
     public function bbtb()
     {
         $session_users  = session('data_login');
+        $session_peserta  = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('pilih-peserta')->with('status', 'Tidak ada peserta yang dipilih, harap melakukan pemilihan peserta pelayanan terlebih dahulu.');
+        }
         $users          = Login::find($session_users->id);
         return view('pelayanan.bbtb', [
             'users' => $users
         ]);
+    }
+
+    public function post_bbtb(Request $request)
+    {
+        $session_peserta = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+        } else {
+            // $data = Detail::find($session_peserta->id);
+            $data = Detail::find($session_peserta->id);
+            if ($data == null) {
+                return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+            } else {
+                $cek_bulan = $this->hitung_bulan($data->id);
+                $berat_badan = $request->jawaban_bb;
+                $tinggi_badan = $request->jawaban_tb;
+                switch ($cek_bulan) {
+                    case $cek_bulan < 66:
+                        if ($berat_badan < 4.600 && $tinggi_badan < 40) {
+                            $hasil_bbtb = "Kurus, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                            echo $hasil_bbtb;
+                            die;
+                        } elseif ($berat_badan < 5.700 && $tinggi_badan < 60) {
+                            $hasil_bbtb = "Normal, berat badan terhadap tinggi badan berstatus normal. tidak ada penyimpangan silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                            echo $hasil_bbtb;
+                            die;
+                        } elseif ($berat_badan > 5.700 && $tinggi_badan > 60) {
+                            $hasil_bbtb = "Gemuk, berat badan terhadap tinggi badan berstatus menyimpang. silahkan kunjungi pelayanan kesehatan untuk informasi selanjutnya.";
+                            echo $hasil_bbtb;
+                            die;
+                        } else {
+                            echo "FAIL";
+                            die;
+                            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+                        }
+                        break;
+                }
+            }
+        }
     }
 
     public function lk()
