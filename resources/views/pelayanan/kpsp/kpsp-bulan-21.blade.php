@@ -15,7 +15,7 @@
             font-size: 15px;
             text-align: justify;
         }
-        
+
         @media screen and (max-width: 400px) {
             p {
                 font-size: 3.4vw;
@@ -50,6 +50,11 @@
         </div>
         <!-- end-of-title -->
 
+        <form action="{{ route('post-kpsp') }}" method="POST">
+            @csrf
+
+            <input type="hidden" name="bulan" value="21">
+
         <div class="row px-2 rounded-3 bg-white mb-3">
             <div class="col-sm-12 col-md-12 col-lg-12  py-2">
                 <div class="content">
@@ -64,10 +69,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -87,10 +92,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -110,10 +115,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -133,10 +138,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -156,10 +161,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -179,10 +184,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -202,10 +207,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -225,10 +230,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -248,10 +253,10 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -271,14 +276,20 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]" class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
         </div>
+
+        <div class="form-control bg-transparent border-0 px-0 text-lg-center text-start">
+            <button type="submit" class="btn col-4 text-white rounded-pill " style="background-color: rgb(46, 178, 249);">Kirim</button>
+        </div>
+
+    </form>
 
     </div>
 

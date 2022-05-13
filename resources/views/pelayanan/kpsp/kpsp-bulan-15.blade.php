@@ -7,22 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Usia 21 Bulan</title>
+    <title>Usia 15 Bulan</title>
     <style>
         p {
             font-size: 15px;
             text-align: justify;
         }
-        
-        @media screen and (max-width: 400px) {
+
+        @media screen and (max-width : 400px) {
             p {
                 font-size: 3.4vw;
             }
+
             h5 {
                 font-size: 3.7vw;
             }
+
             option {
                 font-size: 3.2vw !important;
             }
@@ -38,24 +41,28 @@
         <div class="row px-1 rounded-3 mb-3 bg-white py-1">
             <div class="col-12 py-2 ">
                 <div class="title d-flex justify-content-center mb-1">
-                    <h5 class="ms-1">KPSP BAYI UMUR 21 BULAN</h5>
+                    <h5 class="ms-1">KPSP BAYI UMUR 15 BULAN</h5>
                 </div>
                 <div class="mb-1 ms-3">
                     <p class="mb-0">Alat dan Bahan yang dibutuhkan :</p>
-                    <p class="mb-0">- Kismis</p>
-                    <p class="mb-0">- Bola tenis</p>
-                    <p>- Kubus</p>
+                    <p class="mb-0">- kubus</p>
+                    <p>- kismis</p>
                 </div>
             </div>
         </div>
         <!-- end-of-title -->
+
+        <form action="{{ route('post-kpsp') }}" method="POST">
+            @csrf
+
+            <input type="hidden" name="bulan" value="15">
 
         <div class="row px-2 rounded-3 bg-white mb-3">
             <div class="col-sm-12 col-md-12 col-lg-12  py-2">
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">1.</p>
-                        <p class="ms-1 mb-1">Letakkan kismis diatas meja dekat anak, apakah anak dapat mengambil dengan ibu jari dan telunjuk ?</p>
+                        <p class="ms-1 mb-1">Beri 2 kubus, tanpa bantuan, apakah anak dapat mempertemukan dua kubus kecil yang ia pegang ?</p>
                     </div>
                     <div class="info ms-3">
                         <p class="text-danger mb-1" style="font-size: 13px;">* Gerak Halus</p>
@@ -64,10 +71,13 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -78,7 +88,7 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">2.</p>
-                        <p class="ms-1 mb-1">Gelindingkan bola tenis ke arah anak, apakah dapat mengelindingkan/melempar bola kembali kepada anak ?</p>
+                        <p class="ms-1 mb-1">Apakah anak anak dapat mengambil benda kecil seperti kacang, kismis, atau potongan biskuit dengan menggunakan ibu jari dan jari telunjuk ?</p>
                     </div>
                     <div class="info ms-3">
                         <p class="text-danger mb-1" style="font-size: 13px;">* Gerak Halus</p>
@@ -87,10 +97,13 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -101,19 +114,22 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">3.</p>
-                        <p class="ms-1 mb-1">Beri kubus didepannya. Minta anak meletakkan 1 kubus diatas kubus lainnya (1 tingkat saja)</p>
+                        <p class="ms-1 mb-1">Apakah anak dapat jalan sendiri atau jalan dengan berpegangan ?</p>
                     </div>
                     <div class="info ms-3">
-                        <p class="text-danger mb-1" style="font-size: 13px;">* Gerak Halus</p>
+                        <p class="text-danger mb-1" style="font-size: 13px;">* Gerak Kasar</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -124,7 +140,7 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">4.</p>
-                        <p class="ms-1 mb-1">Apakah anak dapat menunjukkan apa yang diingikan tanpa menangis atau merengek ?</p>
+                        <p class="ms-1 mb-1">Tanpa bantuan, apakah anak dapat bertepuk tangan atau melambai lambai ?</p>
                     </div>
                     <div class="info ms-3">
                         <p class="text-danger mb-1" style="font-size: 13px;">* Sosialisasi dan Kemandirian</p>
@@ -133,10 +149,13 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -147,19 +166,22 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">5.</p>
-                        <p class="ms-1 mb-1">Apakah anak dapat minum dari cangkir/gelas sendiri tanpa tumpah ? </p>
+                        <p class="ms-1 mb-1"><font style="display: block;">Jawab TIDAK bila ia membutuh kan bantuan</font> Apakah anak dapat mengatakan "papa" ketika ia memanggil/melihat ayahnya, atau mengatakan "mama" jika memanggil/melihat ibunya ?</p>
                     </div>
                     <div class="info ms-3">
-                        <p class="text-danger mb-1" style="font-size: 13px;">*Sosialisasi dan Kemandirian </p>
+                        <p class="text-danger mb-1" style="font-size: 13px;">* Bicara dan Bahasa</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -170,7 +192,7 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">6.</p>
-                        <p class="ms-1 mb-1">Apakah anak suka meniru bila ibu sedang melakukan pekerjaan rumah tangga (menyapu, mencuci, dll) ?</p>
+                        <p class="ms-1 mb-1"><font style="display: block;">Jawab YA bila anak mengatakan salah satu diantaranya</font>Apakah anak dapat menunjukkan apa yang diinginkannya tanpa menangis atau merengek ? Jawab YA bila ia menunjuk, menarik atau mengeluarkan suara yang menyenangkan </p>
                     </div>
                     <div class="info ms-3">
                         <p class="text-danger mb-1" style="font-size: 13px;">* Sosialisasi dan Kemandirian</p>
@@ -179,10 +201,13 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -193,19 +218,22 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">7.</p>
-                        <p class="ms-1 mb-1">Apakah anak dapat mengucapkan minimal 3 kata yang mempunyai arti (selain kata mama dan papa) ?</p>
+                        <p class="ms-1 mb-1">Apakah anak dapat berdiri sendiri tanpa berpegangan selama kira-kira 5 detik ?</p>
                     </div>
                     <div class="info ms-3">
-                        <p class="text-danger mb-1" style="font-size: 13px;">* Bicara dan Bahasa</p>
+                        <p class="text-danger mb-1" style="font-size: 13px;">* Gerak kasar</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -216,7 +244,7 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">8.</p>
-                        <p class="ms-1 mb-1">Apakah anak pernah berjalan mundur minimal 5 langkah ?</p>
+                        <p class="ms-1 mb-1">Apakah anak dapat berdiri sendiri tanpa berpegangan selama 30 detik atau lebih ? </p>
                     </div>
                     <div class="info ms-3">
                         <p class="text-danger mb-1" style="font-size: 13px;">* Gerak Kasar</p>
@@ -225,10 +253,13 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -239,7 +270,7 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">9.</p>
-                        <p class="ms-1 mb-1">Letakkan kubus di lantai, minta anak memungut, apakah anak dapat memungut dan berdiri kembali tanpa berpegangan ?</p>
+                        <p class="ms-1 mb-1">Taruh kubus di lantai, tanpa berpegangan atau menyentuh lantai, apakah anak dapat membungkuk untuk memungut kubus di lantai dan kemudian berdiri kembali ?</p>
                     </div>
                     <div class="info ms-3">
                         <p class="text-danger mb-1" style="font-size: 13px;">* Gerak Kasar</p>
@@ -248,10 +279,13 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
@@ -262,7 +296,7 @@
                 <div class="content">
                     <div class="ask d-flex">
                         <p class="mb-0">10.</p>
-                        <p class="ms-1 mb-1">Minta anak berjalan sepanjang ruangan, dapatkan ia berjalan tanpa terhunyung/jatuh ?</p>
+                        <p class="ms-1 mb-1">Apakah anak dapat berjalan di sepanjang ruangan tanpa jatuh atau terhuyung-huyung ?</p>
                     </div>
                     <div class="info ms-3">
                         <p class="text-danger mb-1" style="font-size: 13px;">* Gerak Kasar</p>
@@ -271,20 +305,30 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 bg-white mb-3 py-1">
                 <div class="form-group px-1">
-                    <select class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0" id="jawaban" aria-label="Default select example" style="border-bottom: 2px solid rgb(59, 59, 59);">
+                    <select name="jawaban_kpsp[]"
+                        class="form-control form-select shadow-none border-top-0 border-start-0 border-end-0 rounded-0"
+                        id="jawaban" aria-label="Default select example"
+                        style="border-bottom: 2px solid rgb(59, 59, 59);">
                         <option selected disabled>Pilih jawaban anda</option>
-                        <option value="y">YA</option>
-                        <option value="t">TIDAK</option>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
                     </select>
                 </div>
             </div>
         </div>
 
+        <div class="form-control bg-transparent border-0 px-0 text-lg-center text-start">
+            <button type="submit" class="btn col-4 text-white rounded-pill " style="background-color: rgb(46, 178, 249);">Kirim</button>
+        </div>
+
+    </form>
+
     </div>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
 </body>

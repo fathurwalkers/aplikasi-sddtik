@@ -11,7 +11,7 @@
 
     <div class="row group">
 
-        {{-- <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="col-sm-4 col-md-4 col-lg-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><b>KPSP </b></h5>
@@ -19,7 +19,7 @@
                     <a href="{{ route('kpsp') }}" class="btn btn-info"><b>Mulai Tes ></b></a>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <div class="col-sm-4 col-md-4 col-lg-4">
             <div class="card">

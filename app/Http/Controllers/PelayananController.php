@@ -306,6 +306,34 @@ class PelayananController extends Controller
         return redirect()->route('dashboard')->with('status', 'Minimal usia (bulan) harus kurang dari 30 Bulan untuk melakukan pemeriksaan KPSP.');
     }
 
+    public function post_kpsp(Request $request)
+    {
+        $bulan_request = $request->bulan;
+        $jawaban_kpsp = $request->jawaban_kpsp;
+        $benar = 0;
+        $salah = 0;
+        foreach ($jawaban_kpsp as $item) {
+            switch ($item) {
+                case 'YA':
+                    $benar++;
+                    break;
+                case 'TIDAK':
+                    $salah++;
+                    break;
+                case null:
+                    $benar = $benar;
+                    $salah = $salah;
+                    break;
+            }
+        }
+        switch ($bulan_request) {
+            case 3:
+                //
+                break;
+        }
+        dd($jawaban_kpsp);
+    }
+
     public function tdd()
     {
         $session_users  = session('data_login');
