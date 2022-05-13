@@ -250,10 +250,60 @@ class PelayananController extends Controller
         if ($session_peserta == null) {
             return redirect()->route('pilih-peserta')->with('status', 'Tidak ada peserta yang dipilih, harap melakukan pemilihan peserta pelayanan terlebih dahulu.');
         }
-        $users          = Login::find($session_users->id);
-        return view('pelayanan.kpsp', [
-            'users' => $users
-        ]);
+        $cek_bulan = $this->hitung_bulan($session_peserta->id);
+        if ($cek_bulan <= 3) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-3', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan >= 6) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-6', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan >= 12) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-12', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan >= 15) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-15', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan >= 18) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-18', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan >= 21) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-21', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan >= 24) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-24', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan >= 30) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-30', [
+                'users' => $users
+            ]);
+        }
+        if ($cek_bulan <= 31) {
+            $users          = Login::find($session_users->id);
+            return redirect()->route('dashboard')->with('status', 'Minimal usia (bulan) harus kurang dari 30 Bulan untuk melakukan pemeriksaan KPSP.');
+        }
+        return redirect()->route('dashboard')->with('status', 'Minimal usia (bulan) harus kurang dari 30 Bulan untuk melakukan pemeriksaan KPSP.');
     }
 
     public function tdd()
