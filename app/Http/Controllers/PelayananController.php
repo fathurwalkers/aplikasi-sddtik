@@ -42,8 +42,13 @@ class PelayananController extends Controller
         return view('admin.pilih-bulan-pemeriksaan');
     }
 
-    public function pemeriksaan_berdasarkan_bulan($bulan)
+    public function pemeriksaan_berdasarkan_bulan(Request $request)
     {
+        $ambil_bulan = date("m", strtotime($request->bulan));
+        $pemeriksaan = Hasilrekap::whereMonth('updated_at', '=', 05)->get();
+        dump($pemeriksaan);
+        dump($ambil_bulan);
+        dd($request->bulan);
         return view('admin.lihat-pemeriksaan-perbulan');
     }
 

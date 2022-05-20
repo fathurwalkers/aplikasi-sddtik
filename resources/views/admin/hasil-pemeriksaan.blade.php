@@ -53,10 +53,10 @@
 @section('main-header', 'Hasil Pemeriksaan')
 
 @section('status-pelayanan')
-    {{-- <a href="#" class="btn btn-md btn-info" data-toggle="modal" data-target="#modaltambahpeserta">
+    <a href="{{ route('pilih-bulan-pemeriksaan') }}" class="btn btn-md btn-info">
         <b>Tambah Peserta</b>
     </a>
-    <x-modal-tambah-peserta /> --}}
+    {{-- <x-modal-tambah-peserta /> --}}
     &nbsp;
 @endsection
 
