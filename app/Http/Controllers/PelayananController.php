@@ -37,6 +37,16 @@ class PelayananController extends Controller
         ]);
     }
 
+    public function pilih_bulan_pemeriksaan()
+    {
+        return view('admin.pilih-bulan-pemeriksaan');
+    }
+
+    public function pemeriksaan_berdasarkan_bulan($bulan)
+    {
+        return view('admin.lihat-pemeriksaan-perbulan');
+    }
+
     public function cetak_hasil_pemeriksaan($id)
     {
         $data = Detail::find($id);

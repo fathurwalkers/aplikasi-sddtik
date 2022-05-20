@@ -23,6 +23,9 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     Route::get('/profile', [BackController::class, 'profile'])->name('profile');
     Route::post('/post-ubah-profile/{id}', [BackController::class, 'post_ubah_profile'])->name('post-ubah-profile');
 
+    Route::get('/pemeriksaan/pilih-bulan', [PelayananController::class, 'pilih_bulan_pemeriksaan'])->name('pilih-bulan-pemeriksaan');
+    Route::get('/pemeriksaan/bulan/{bulan}', [PelayananController::class, 'pemeriksaan_berdasarkan_bulan'])->name('pemeriksaan-berdasarkan-bulan');
+
     Route::get('/data-peserta', [BackController::class, 'data_peserta'])->name('data-peserta');
     Route::post('/data-peserta/hapus/{id}', [BackController::class, 'hapus_peserta'])->name('hapus-peserta');
     Route::get('/data-pelaksana', [BackController::class, 'data_pelaksana'])->name('data-pelaksana');
