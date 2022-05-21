@@ -46,15 +46,14 @@
         .fixed-text-th {
             font-size: 15px !important;
         }
-
     </style>
 @endpush
 
 @section('main-header', 'Hasil Pemeriksaan')
 
 @section('status-pelayanan')
-    <a href="{{ route('pilih-bulan-pemeriksaan') }}" class="btn btn-md btn-info">
-        <b>Tambah Peserta</b>
+    <a href="{{ route('pilih-bulan-pemeriksaan') }}" class="btn btn-sm btn-info buttonpadding">
+        <b>Hasil Per-bulan</b>
     </a>
     {{-- <x-modal-tambah-peserta /> --}}
     &nbsp;

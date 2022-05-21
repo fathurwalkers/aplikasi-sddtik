@@ -45,11 +45,11 @@ class PelayananController extends Controller
     public function pemeriksaan_berdasarkan_bulan(Request $request)
     {
         $ambil_bulan = date("m", strtotime($request->bulan));
-        $pemeriksaan = Hasilrekap::whereMonth('updated_at', '=', 05)->get();
-        dump($pemeriksaan);
-        dump($ambil_bulan);
-        dd($request->bulan);
-        return view('admin.lihat-pemeriksaan-perbulan');
+        $data = Detail::all();
+        $pemeriksaan = Hasilrekap::whereMonth('updated_at', '=', $ambil_bulan)->get();
+        return view('admin.lihat-pemeriksaan-perbulan', [
+            'data' => $data
+        ]);
     }
 
     public function cetak_hasil_pemeriksaan($id)
@@ -323,30 +323,64 @@ class PelayananController extends Controller
 
     public function post_kpsp(Request $request)
     {
-        $bulan_request = $request->bulan;
-        $jawaban_kpsp = $request->jawaban_kpsp;
-        $benar = 0;
-        $salah = 0;
-        foreach ($jawaban_kpsp as $item) {
-            switch ($item) {
-                case 'YA':
-                    $benar++;
-                    break;
-                case 'TIDAK':
-                    $salah++;
-                    break;
-                case null:
-                    $benar = $benar;
-                    $salah = $salah;
-                    break;
+        $session_peserta = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+        } else {
+            // $data = Detail::find($session_peserta->id);
+            $data = Detail::find($session_peserta->id);
+            if ($data == null) {
+                return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+            } else {
+                $bulan_request = $request->bulan;
+                $jawaban_kpsp = $request->jawaban_kpsp;
+                $benar = 0;
+                $salah = 0;
+                foreach ($jawaban_kpsp as $item) {
+                    switch ($item) {
+                        case 'YA':
+                            $benar++;
+                            break;
+                        case 'TIDAK':
+                            $salah++;
+                            break;
+                        case null:
+                            $benar = $benar;
+                            $salah = $salah;
+                            break;
+                    }
+                }
+                if ($benar >= 9) {
+                    $hasil_kpsp = "Status : Normal. ";
+                    $hasil_kpsp .= "Perkembangan anak sesuai dengan tahap perkembangannya (S).";
+                }
+                if ($benar >= 7 && $benar <= 8) {
+                    $hasil_kpsp = "Status : Meragukan. ";
+                    $hasil_kpsp .= "Perkembangan anak meragukan (M).";
+                }
+                if ($benar <= 6) {
+                    $hasil_kpsp = "Status : Penyimpangan. ";
+                    $hasil_kpsp .= "Perkembangan anak kemungkinan mengalami penyimpangan (P).";
+                }
+
+                $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $cek_bulan = $this->hitung_bulan($data->id);
+                $array_hasil = [];
+                foreach ($hasil_pemeriksaan as $hasil) {
+                    if ($hasil->bulan >= $cek_bulan) {
+                        $hasil_query = $hasil;
+                        break;
+                    }
+                }
+                $result = Hasilrekap::find($hasil_query["id"]);
+                $save_result = $result->update([
+                    'kpsp' => "1",
+                    'keterangan_kpsp' => $hasil_kpsp,
+                    'updated_at' => now()
+                ]);
+                return redirect()->route('dashboard')->with('status', $hasil_kpsp);
             }
         }
-        switch ($bulan_request) {
-            case 3:
-                //
-                break;
-        }
-        dd($jawaban_kpsp);
     }
 
     public function tdd()
