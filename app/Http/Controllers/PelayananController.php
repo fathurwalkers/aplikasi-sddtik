@@ -618,10 +618,17 @@ class PelayananController extends Controller
     public function mchat()
     {
         $session_users  = session('data_login');
-        $users          = Login::find($session_users->id);
-        return view('pelayanan.mchat', [
-            'users' => $users
-        ]);
+        $session_peserta  = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('pilih-peserta')->with('status', 'Tidak ada peserta yang dipilih, harap melakukan pemilihan peserta pelayanan terlebih dahulu.');
+        }
+        $cek_bulan = $this->hitung_bulan($session_peserta->id);
+        if ($cek_bulan >= 18) {
+            $users          = Login::find($session_users->id);
+            return view('pelayanan.kpsp.kpsp-bulan-3', [
+                'users' => $users
+            ]);
+        }
     }
 
     public function gpph()
