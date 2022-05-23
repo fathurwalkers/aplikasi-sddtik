@@ -68,6 +68,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     Route::post('/pelayanan/post-kmpe', [PelayananController::class, 'post_kmpe'])->name('post-kmpe');
 
     Route::get('/pelayanan/mchat', [PelayananController::class, 'mchat'])->name('mchat');
+    Route::post('/pelayanan/post-mchat', [PelayananController::class, 'post_mchat'])->name('post-mchat');
+
     Route::get('/pelayanan/gpph', [PelayananController::class, 'gpph'])->name('gpph');
     // ==================================== END Pelayanan Route ====================================
 

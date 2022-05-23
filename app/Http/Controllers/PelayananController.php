@@ -625,9 +625,68 @@ class PelayananController extends Controller
         $cek_bulan = $this->hitung_bulan($session_peserta->id);
         if ($cek_bulan >= 18) {
             $users          = Login::find($session_users->id);
-            return view('pelayanan.kpsp.kpsp-bulan-3', [
+            return view('pelayanan.mchat', [
                 'users' => $users
             ]);
+        } else {
+            return redirect()->route('dashboard')->with('status', 'Minimal usia (bulan) harus lebih dari 18 Bulan untuk melakukan pemeriksaan MCHAT.');
+        }
+    }
+
+    public function post_mchat(Request $request)
+    {
+        $session_peserta = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+        } else {
+            // $data = Detail::find($session_peserta->id);
+            $data = Detail::find($session_peserta->id);
+            if ($data == null) {
+                return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+            } else {
+                $jawaban_mchat = $request->jawaban_mchat;
+                $benar = 0;
+                $salah = 0;
+                if ($jawaban_mchat[1] == "TIDAK") {
+                    $salah++;
+                }
+                if ($jawaban_mchat[6] == "TIDAK") {
+                    $salah++;
+                }
+                if ($jawaban_mchat[8] == "TIDAK") {
+                    $salah++;
+                }
+                if ($jawaban_mchat[12] == "TIDAK") {
+                    $salah++;
+                }
+                if ($jawaban_mchat[13] == "TIDAK") {
+                    $salah++;
+                }
+                if ($jawaban_mchat[14] == "TIDAK") {
+                    $salah++;
+                }
+                if ($salah >= 2) {
+                    $keterangan_mchat = "Risiko tinggi autisme (Risiko Autisme). Pemeriksaan anak masuk kategori risiko tinggi autisme, silahkan kunjungi pelayanan kesehatan.";
+                } else {
+                    $keterangan_mchat = "Status : Normal. Pemeriksaan anak sudah sesuai (Normal), silahkan jadwalkan kunjungan berikutnya 3 bulan lagi sampai UMUR 2 Tahun, tiap 6 bulan sampai UMUR 72 Bulan.";
+                }
+                $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $cek_bulan = $this->hitung_bulan($data->id);
+                $array_hasil = [];
+                foreach ($hasil_pemeriksaan as $hasil) {
+                    if ($hasil->bulan >= $cek_bulan) {
+                        $hasil_query = $hasil;
+                        break;
+                    }
+                }
+                $result = Hasilrekap::find($hasil_query["id"]);
+                $save_result = $result->update([
+                    'mchat' => "1",
+                    'keterangan_mchat' => $keterangan_mchat,
+                    'updated_at' => now()
+                ]);
+                return redirect()->route('dashboard')->with('status', $keterangan_mchat);
+            }
         }
     }
 
