@@ -707,5 +707,55 @@ class PelayananController extends Controller
             return redirect()->route('dashboard')->with('status', 'Minimal usia (bulan) harus lebih dari 18 Bulan untuk melakukan pemeriksaan MCHAT.');
         }
     }
+
+    public function post_gpph(Request $request)
+    {
+        $session_peserta = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+        } else {
+            // $data = Detail::find($session_peserta->id);
+            $data = Detail::find($session_peserta->id);
+            if ($data == null) {
+                return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+            } else {
+                $jawaban_gpph = $request->jawaban_gpph;
+                $nilai = 0;
+                foreach ($jawaban_gpph as $item) {
+                    $nilai += intval($item);
+                }
+
+                if ($nilai <= 13) {
+                    $keterangan_gpph = "Total Nilai : ";
+                    $keterangan_gpph .= $nilai;
+                    $keterangan_gpph .= ". Status GPPH Tidak terdeteksi pada peserta ini.";
+                }
+
+                if ($nilai >= 14) {
+                    $keterangan_gpph = "Total Nilai : ";
+                    $keterangan_gpph .= $nilai;
+                    $keterangan_gpph .= ". Status GPPH Terdeteksi. Kemungkinan peserta ini mengalami GPPH.";
+                }
+
+                $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $cek_bulan = $this->hitung_bulan($data->id);
+                $array_hasil = [];
+                foreach ($hasil_pemeriksaan as $hasil) {
+                    if ($hasil->bulan >= $cek_bulan) {
+                        $hasil_query = $hasil;
+                        break;
+                    }
+                }
+                $result = Hasilrekap::find($hasil_query["id"]);
+                $save_result = $result->update([
+                    'gpph' => "1",
+                    'keterangan_gpph' => $keterangan_gpph,
+                    'updated_at' => now()
+                ]);
+                return redirect()->route('dashboard')->with('status', $keterangan_gpph);
+            }
+        }
+
+    }
     // END DETEKSI PENYIMPANGAN MENTAL EMOSIONAL ====================================================
 }

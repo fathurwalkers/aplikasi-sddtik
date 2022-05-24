@@ -71,6 +71,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     Route::post('/pelayanan/post-mchat', [PelayananController::class, 'post_mchat'])->name('post-mchat');
 
     Route::get('/pelayanan/gpph', [PelayananController::class, 'gpph'])->name('gpph');
+    Route::post('/pelayanan/post-gpph', [PelayananController::class, 'post_gpph'])->name('post-gpph');
     // ==================================== END Pelayanan Route ====================================
 
     Route::get('/generate-data', [GenerateController::class, 'generate_data'])->name('generate-data');
