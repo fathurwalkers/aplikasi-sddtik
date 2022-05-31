@@ -336,10 +336,9 @@ class PelayananController extends Controller
                         break;
                 }
                 $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
-                $cbulan = $this->hitung_bulan($data->id);
                 $array_hasil = [];
                 foreach ($hasil_pemeriksaan as $hasil) {
-                    if ($hasil->bulan >= $cbulan) {
+                    if ($hasil->bulan >= $cek_bulan) {
                         $hasil_query = $hasil;
                         break;
                     }
