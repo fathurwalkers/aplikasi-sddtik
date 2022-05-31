@@ -48,6 +48,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'ceklogin'], function ()
     Route::post('/pelayanan/post-bbtb', [PelayananController::class, 'post_bbtb'])->name('post-bbtb');
 
     Route::get('/pelayanan/lk', [PelayananController::class, 'lk'])->name('lk');
+    Route::post('/pelayanan/post-lk', [PelayananController::class, 'post_lk'])->name('post-lk');
 
     // Deteksi Penyimpangan Perkembangan Route
     Route::get('/pelayanan/deteksi-dini-penyimpangan-perkembangan', [PelayananController::class, 'deteksi_penyimpangan_perkembangan'])->name('deteksi-penyimpangan-perkembangan');

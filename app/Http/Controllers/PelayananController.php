@@ -246,6 +246,114 @@ class PelayananController extends Controller
             'users' => $users
         ]);
     }
+
+    public function post_lk(Request $request)
+    {
+        $session_peserta = session('peserta');
+        if ($session_peserta == null) {
+            return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+        } else {
+            // $data = Detail::find($session_peserta->id);
+            $data = Detail::find($session_peserta->id);
+            // dump($session_peserta);
+            // dump($data);
+            // die;
+            if ($data == null) {
+                return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
+            } else {
+                $cek_bulan = $this->hitung_bulan($data->id);
+                $jawaban_lk = intval($request->jawaban_lk);
+                switch ($data->detail_jeniskelamin) {
+                    case 'L':
+                        if ($cek_bulan <= 3) {
+                            if ($jawaban_lk <= 34) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 34 && $jawaban_lk <= 40) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 40) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        if ($cek_bulan >= 3 && $cek_bulan <= 6) {
+                            if ($jawaban_lk <= 40) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 40 && $jawaban_lk <= 43) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 43) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        if ($cek_bulan >= 72 && $cek_bulan <= 144) {
+                            if ($jawaban_lk <= 43) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 43 && $jawaban_lk <= 46) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 46) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        break;
+                    case 'P':
+                        if ($cek_bulan <= 3) {
+                            if ($jawaban_lk <= 34) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 34 && $jawaban_lk <= 39) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 39) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        if ($cek_bulan >= 3 && $cek_bulan <= 6) {
+                            if ($jawaban_lk <= 39) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 39 && $jawaban_lk <= 42) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 42) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        if ($cek_bulan >= 72 && $cek_bulan <= 144) {
+                            if ($jawaban_lk <= 42) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 42 && $jawaban_lk <= 45) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 45) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        break;
+                }
+                $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
+                $cbulan = $this->hitung_bulan($data->id);
+                $array_hasil = [];
+                foreach ($hasil_pemeriksaan as $hasil) {
+                    if ($hasil->bulan >= $cbulan) {
+                        $hasil_query = $hasil;
+                        break;
+                    }
+                }
+                $result = Hasilrekap::find($hasil_query["id"]);
+                $save_result = $result->update([
+                    'lk' => "1",
+                    'keterangan_lk' => $keterangan,
+                    'updated_at' => now()
+                ]);
+                return redirect()->route('dashboard')->with('status', $keterangan);
+            }
+        }
+    }
     // AKHIR DETEKSI PENYIMPANGAN PERTUMBUHAN ======================================================
 
     // DETEKSI PENYIMPANGAN PERKEMBANGAN ===========================================================
