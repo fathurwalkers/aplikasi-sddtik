@@ -263,8 +263,10 @@ class PelayananController extends Controller
             } else {
                 $cek_bulan = $this->hitung_bulan($data->id);
                 $jawaban_lk = intval($request->jawaban_lk);
-                switch ($data->detail_jeniskelamin) {
-                    case 'L':
+                // dd($jawaban_lk);
+                $jenis_kelamin = $data->detail_jeniskelamin;
+                switch ($jenis_kelamin) {
+                    case "L":
                         if ($cek_bulan <= 3) {
                             if ($jawaban_lk <= 34) {
                                 $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
@@ -272,18 +274,29 @@ class PelayananController extends Controller
                             if ($jawaban_lk >= 34 && $jawaban_lk <= 40) {
                                 $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
-                            if ($jawaban_lk >= 40) {
+                            if ($jawaban_lk >= 41) {
                                 $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                         }
-                        if ($cek_bulan >= 3 && $cek_bulan <= 6) {
+                        if ($cek_bulan >= 4 && $cek_bulan <= 6) {
                             if ($jawaban_lk <= 40) {
                                 $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                             if ($jawaban_lk >= 40 && $jawaban_lk <= 43) {
                                 $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
-                            if ($jawaban_lk >= 43) {
+                            if ($jawaban_lk >= 44) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        if ($cek_bulan >= 7 && $cek_bulan <= 71) {
+                            if ($jawaban_lk <= 40) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 40 && $jawaban_lk <= 43) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 44) {
                                 $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                         }
@@ -294,12 +307,12 @@ class PelayananController extends Controller
                             if ($jawaban_lk >= 43 && $jawaban_lk <= 46) {
                                 $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
-                            if ($jawaban_lk >= 46) {
+                            if ($jawaban_lk >= 47) {
                                 $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                         }
                         break;
-                    case 'P':
+                    case "P":
                         if ($cek_bulan <= 3) {
                             if ($jawaban_lk <= 34) {
                                 $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
@@ -307,18 +320,29 @@ class PelayananController extends Controller
                             if ($jawaban_lk >= 34 && $jawaban_lk <= 39) {
                                 $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
-                            if ($jawaban_lk >= 39) {
+                            if ($jawaban_lk >= 40) {
                                 $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                         }
-                        if ($cek_bulan >= 3 && $cek_bulan <= 6) {
+                        if ($cek_bulan >= 4 && $cek_bulan <= 6) {
                             if ($jawaban_lk <= 39) {
                                 $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                             if ($jawaban_lk >= 39 && $jawaban_lk <= 42) {
                                 $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
-                            if ($jawaban_lk >= 42) {
+                            if ($jawaban_lk >= 43) {
+                                $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                        }
+                        if ($cek_bulan >= 7 && $cek_bulan <= 71) {
+                            if ($jawaban_lk <= 39) {
+                                $keterangan = "Status : Tidak Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 39 && $jawaban_lk <= 42) {
+                                $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
+                            }
+                            if ($jawaban_lk >= 43) {
                                 $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                         }
@@ -329,12 +353,13 @@ class PelayananController extends Controller
                             if ($jawaban_lk >= 42 && $jawaban_lk <= 45) {
                                 $keterangan = "Status : Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
-                            if ($jawaban_lk >= 45) {
+                            if ($jawaban_lk >= 46) {
                                 $keterangan = "Status : Melebihi Normal. Ukuran lingkar kepala adalah " . $jawaban_lk;
                             }
                         }
                         break;
                 }
+                dd($keterangan);
                 $hasil_pemeriksaan = Hasilrekap::where('data_id', $data->id)->get();
                 $array_hasil = [];
                 foreach ($hasil_pemeriksaan as $hasil) {
@@ -373,55 +398,55 @@ class PelayananController extends Controller
             return redirect()->route('pilih-peserta')->with('status', 'Tidak ada peserta yang dipilih, harap melakukan pemilihan peserta pelayanan terlebih dahulu.');
         }
         $cek_bulan = $this->hitung_bulan($session_peserta->id);
-        if ($cek_bulan <= 3) {
+        if ($cek_bulan <= 3 && $cek_bulan >= 3) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-3', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan >= 6) {
+        if ($cek_bulan >= 6 && $cek_bulan <= 6) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-6', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan >= 12) {
+        if ($cek_bulan >= 12 && $cek_bulan <= 12) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-12', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan >= 15) {
+        if ($cek_bulan >= 15 && $cek_bulan <= 15) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-15', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan >= 18) {
+        if ($cek_bulan >= 18 && $cek_bulan <= 18) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-18', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan >= 21) {
+        if ($cek_bulan >= 21 && $cek_bulan <= 21) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-21', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan >= 24) {
+        if ($cek_bulan >= 24 && $cek_bulan <= 24) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-24', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan >= 30) {
+        if ($cek_bulan >= 30 && $cek_bulan <= 30) {
             $users          = Login::find($session_users->id);
             return view('pelayanan.kpsp.kpsp-bulan-30', [
                 'users' => $users
             ]);
         }
-        if ($cek_bulan <= 31) {
+        if ($cek_bulan <= 31 && $cek_bulan <= 31) {
             $users          = Login::find($session_users->id);
             return redirect()->route('dashboard')->with('status', 'Minimal usia (bulan) harus kurang dari 30 Bulan untuk melakukan pemeriksaan KPSP.');
         }
