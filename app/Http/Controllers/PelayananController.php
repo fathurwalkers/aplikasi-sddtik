@@ -253,17 +253,12 @@ class PelayananController extends Controller
         if ($session_peserta == null) {
             return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
         } else {
-            // $data = Detail::find($session_peserta->id);
             $data = Detail::find($session_peserta->id);
-            // dump($session_peserta);
-            // dump($data);
-            // die;
             if ($data == null) {
                 return redirect()->route('dashboard')->with('status', 'Maaf, anda tidak dapat melakukan aksi ini.');
             } else {
                 $cek_bulan = $this->hitung_bulan($data->id);
                 $jawaban_lk = intval($request->jawaban_lk);
-                // dd($jawaban_lk);
                 $jenis_kelamin = $data->detail_jeniskelamin;
                 switch ($jenis_kelamin) {
                     case "L":
